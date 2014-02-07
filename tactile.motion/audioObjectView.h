@@ -15,6 +15,5 @@
 
 @property (strong) UIColor *colour;
 @property (strong) NSString *label;
-
 //making a change to test
 @end
