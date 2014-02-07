@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface tactileMotionViewController : UIViewController
+//-(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 
+@property (strong) NSMutableArray *audioObjects;
 @end

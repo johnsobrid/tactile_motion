@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F705A6318A183CC000B0030 /* audioObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F705A6218A183CC000B0030 /* audioObjectView.m */; };
 		4FB0B11D18A0754E008486F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B11C18A0754E008486F1 /* Foundation.framework */; };
 		4FB0B11F18A0754E008486F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B11E18A0754E008486F1 /* CoreGraphics.framework */; };
 		4FB0B12118A0754E008486F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B12018A0754E008486F1 /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 		4FB0B13E18A0754E008486F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B12018A0754E008486F1 /* UIKit.framework */; };
 		4FB0B14618A0754E008486F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FB0B14418A0754E008486F1 /* InfoPlist.strings */; };
 		4FB0B14818A0754E008486F1 /* tactile_motionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B14718A0754E008486F1 /* tactile_motionTests.m */; };
+		4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B15218A07671008486F1 /* controlAreaView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F705A6118A183CC000B0030 /* audioObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioObjectView.h; sourceTree = "<group>"; };
+		4F705A6218A183CC000B0030 /* audioObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioObjectView.m; sourceTree = "<group>"; };
 		4FB0B11918A0754E008486F1 /* tactile.motion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tactile.motion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB0B11C18A0754E008486F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4FB0B11E18A0754E008486F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +57,8 @@
 		4FB0B14318A0754E008486F1 /* tactile.motionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "tactile.motionTests-Info.plist"; sourceTree = "<group>"; };
 		4FB0B14518A0754E008486F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4FB0B14718A0754E008486F1 /* tactile_motionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tactile_motionTests.m; sourceTree = "<group>"; };
+		4FB0B15118A07671008486F1 /* controlAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlAreaView.h; sourceTree = "<group>"; };
+		4FB0B15218A07671008486F1 /* controlAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlAreaView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +118,13 @@
 		4FB0B12218A0754E008486F1 /* tactile.motion */ = {
 			isa = PBXGroup;
 			children = (
-				4FB0B12B18A0754E008486F1 /* tactileMotionAppDelegate.h */,
-				4FB0B12C18A0754E008486F1 /* tactileMotionAppDelegate.m */,
 				4FB0B12E18A0754E008486F1 /* Main.storyboard */,
+				4F705A6118A183CC000B0030 /* audioObjectView.h */,
+				4F705A6218A183CC000B0030 /* audioObjectView.m */,
+				4FB0B15118A07671008486F1 /* controlAreaView.h */,
+				4FB0B15218A07671008486F1 /* controlAreaView.m */,
 				4FB0B13118A0754E008486F1 /* tactileMotionViewController.h */,
 				4FB0B13218A0754E008486F1 /* tactileMotionViewController.m */,
-				4FB0B13418A0754E008486F1 /* Images.xcassets */,
 				4FB0B12318A0754E008486F1 /* Supporting Files */,
 			);
 			path = tactile.motion;
@@ -126,7 +133,10 @@
 		4FB0B12318A0754E008486F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4FB0B12B18A0754E008486F1 /* tactileMotionAppDelegate.h */,
+				4FB0B12C18A0754E008486F1 /* tactileMotionAppDelegate.m */,
 				4FB0B12418A0754E008486F1 /* tactile.motion-Info.plist */,
+				4FB0B13418A0754E008486F1 /* Images.xcassets */,
 				4FB0B12518A0754E008486F1 /* InfoPlist.strings */,
 				4FB0B12818A0754E008486F1 /* main.m */,
 				4FB0B12A18A0754E008486F1 /* tactile.motion-Prefix.pch */,
@@ -251,8 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB0B12918A0754E008486F1 /* main.m in Sources */,
+				4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */,
 				4FB0B12D18A0754E008486F1 /* tactileMotionAppDelegate.m in Sources */,
 				4FB0B13318A0754E008486F1 /* tactileMotionViewController.m in Sources */,
+				4F705A6318A183CC000B0030 /* audioObjectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +475,7 @@
 				4FB0B14D18A0754E008486F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FB0B14E18A0754E008486F1 /* Build configuration list for PBXNativeTarget "tactile.motionTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +484,7 @@
 				4FB0B15018A0754E008486F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
