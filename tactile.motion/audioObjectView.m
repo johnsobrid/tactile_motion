@@ -30,7 +30,18 @@
    return self;
 }
 
-
+-(void) dragging:(UIPanGestureRecognizer *)pan
+{
+   if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged) {
+      CGPoint delta = [pan translationInView:self];
+      CGPoint centre = self.center;
+      centre.x += delta.x;
+      centre.y += delta.y;
+      self.center = centre;
+      [pan setTranslation:CGPointZero inView:self];
+      
+   }
+}
 
 
 // Only override drawRect: if you perform custom drawing.

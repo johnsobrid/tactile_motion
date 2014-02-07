@@ -44,12 +44,12 @@
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
                                                                     colour:[UIColor whiteColor]
                                                                      label:@"Bob"];
+      [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
+      
    }
-   //I'm making a change to try and commit it
-   
 }
 
 @end

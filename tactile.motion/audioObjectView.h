@@ -15,4 +15,7 @@
 
 @property (strong) UIColor *colour;
 @property (strong) NSString *label;
+
+-(void) dragging:(UIPanGestureRecognizer *)drag;
+
 @end
