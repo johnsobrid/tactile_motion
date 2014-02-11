@@ -20,6 +20,7 @@
 }
 
 #define MAX_DISTANCE 5
+#define SPEAKER_SIZE 10
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -42,7 +43,20 @@
       [[UIColor lightGrayColor] setStroke];
       [circle stroke];
    }
+}
+
+-(void)drawSpeakers
+{
    
 }
 
+-(void)drawSpeakerRect:(CGPoint *)rectPos
+{
+  // UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x, rectPos.y, SPEAKER_SIZE, SPEAKER_SIZE )];
+}
+
+-(void)drawSpeakerTri
+{
+   
+}
 @end
