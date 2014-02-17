@@ -40,6 +40,7 @@
       self.center = centre;
       [pan setTranslation:CGPointZero inView:self];
       // at this point we also need to send some type of message out as the position changes
+       [self setMyCenter:self.center];
    }
 }
 
@@ -50,5 +51,5 @@
 {
  
 }*/
-
+@synthesize myCenter;
 @end

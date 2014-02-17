@@ -43,14 +43,39 @@
       CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
                                                                     colour: [self objectColour:i]
-                                                                     label:@"Bob"];
+                                                                     label:[NSString stringWithFormat:@"%i",i]];
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
-      
+       [objectView addObserver:self
+                 forKeyPath:@"myCenter"
+                    options:(NSKeyValueObservingOptionNew |
+                             NSKeyValueObservingOptionOld)
+                    context:NULL];
    }
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    if ([keyPath isEqual:@"myCenter"]) {
+        audioObjectView *theAudioObjectView = object;
+        NSString *label = [theAudioObjectView label];
+        CGPoint loc = theAudioObjectView.myCenter;
+        // get center of control area view
+        CGPoint cavcenter = controlArea.center;
+        loc.x -= cavcenter.x;
+        loc.y -= cavcenter.y;
+        float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
+        float theta = atan2f(loc.y,loc.x);
+        
+        [self setStatus:[NSString stringWithFormat:@"%@ %.2f %.2f %.2f %.2f",label,loc.x,loc.y,d,theta]];
+    }
+}
+
 
 -(UIColor *)objectColour: (NSInteger) position
 {
@@ -68,4 +93,9 @@
 
 }
 
+- (void)setStatus:(NSString*)status {
+    [statusField setText:status];
+}
+
 @end
+
