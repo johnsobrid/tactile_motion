@@ -16,13 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOW-CA-5lB" customClass="controlAreaView">
-                                <rect key="frame" x="25" y="91" width="723" height="788"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOW-CA-5lB" customClass="controlAreaView">
+                                <rect key="frame" x="20" y="148" width="728" height="728"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lAF-jQ-wDH" firstAttribute="top" secondItem="WOW-CA-5lB" secondAttribute="bottom" constant="148" id="IRf-y8-DWi"/>
+                            <constraint firstAttribute="centerX" secondItem="WOW-CA-5lB" secondAttribute="centerX" id="Va5-LE-oZM"/>
+                            <constraint firstAttribute="centerY" secondItem="WOW-CA-5lB" secondAttribute="centerY" id="WkP-C1-nJB"/>
+                            <constraint firstItem="WOW-CA-5lB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="erj-kY-H6a"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

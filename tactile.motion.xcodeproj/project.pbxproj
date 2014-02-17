@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F02B44718AC68CE00EB8A0D /* CircleGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */; };
+		4F1187D918B15A1C00878073 /* ControlAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1187D818B15A1C00878073 /* ControlAreaViewController.m */; };
 		4F705A6318A183CC000B0030 /* audioObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F705A6218A183CC000B0030 /* audioObjectView.m */; };
 		4FB0B11D18A0754E008486F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B11C18A0754E008486F1 /* Foundation.framework */; };
 		4FB0B11F18A0754E008486F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0B11E18A0754E008486F1 /* CoreGraphics.framework */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F02B44518AC68CE00EB8A0D /* CircleGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleGestureRecognizer.h; sourceTree = "<group>"; };
+		4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleGestureRecognizer.m; sourceTree = "<group>"; };
+		4F1187D718B15A1C00878073 /* ControlAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlAreaViewController.h; sourceTree = "<group>"; };
+		4F1187D818B15A1C00878073 /* ControlAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlAreaViewController.m; sourceTree = "<group>"; };
 		4F705A6118A183CC000B0030 /* audioObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioObjectView.h; sourceTree = "<group>"; };
 		4F705A6218A183CC000B0030 /* audioObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioObjectView.m; sourceTree = "<group>"; };
 		4FB0B11918A0754E008486F1 /* tactile.motion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tactile.motion.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,8 +129,12 @@
 				4F705A6218A183CC000B0030 /* audioObjectView.m */,
 				4FB0B15118A07671008486F1 /* controlAreaView.h */,
 				4FB0B15218A07671008486F1 /* controlAreaView.m */,
+				4F1187D718B15A1C00878073 /* ControlAreaViewController.h */,
+				4F1187D818B15A1C00878073 /* ControlAreaViewController.m */,
 				4FB0B13118A0754E008486F1 /* tactileMotionViewController.h */,
 				4FB0B13218A0754E008486F1 /* tactileMotionViewController.m */,
+				4F02B44518AC68CE00EB8A0D /* CircleGestureRecognizer.h */,
+				4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */,
 				4FB0B12318A0754E008486F1 /* Supporting Files */,
 			);
 			path = tactile.motion;
@@ -261,10 +271,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB0B12918A0754E008486F1 /* main.m in Sources */,
+				4F1187D918B15A1C00878073 /* ControlAreaViewController.m in Sources */,
 				4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */,
 				4FB0B12D18A0754E008486F1 /* tactileMotionAppDelegate.m in Sources */,
 				4FB0B13318A0754E008486F1 /* tactileMotionViewController.m in Sources */,
 				4F705A6318A183CC000B0030 /* audioObjectView.m in Sources */,
+				4F02B44718AC68CE00EB8A0D /* CircleGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

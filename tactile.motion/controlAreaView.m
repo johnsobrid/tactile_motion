@@ -49,6 +49,10 @@
       [[UIColor lightGrayColor] setStroke];
       [circle stroke];
    }
+   CGRect sweetSpot = CGRectMake(self.bounds.size.width/2-10, self.bounds.size.width/2-10, 20, 20);
+   UIBezierPath *sweetSpotCircle = [UIBezierPath bezierPathWithOvalInRect:sweetSpot];
+   [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
+   [sweetSpotCircle fill];
 }
 
 -(void)positionSpeakers
@@ -62,7 +66,7 @@
       // rotate to the angle where the speaker should be depending on the NUM_OF_SPEAKERS
       CGContextRotateCTM(context, ([self euroOffset] + (i*[self speakerDivision])));
       // translate to the edge of the speaker array
-      CGContextTranslateCTM(context, (self.bounds.size.width/2.92)-(SPEAKER_SIZE*0.5),(self.bounds.size.width/2.92)-(SPEAKER_SIZE*0.5));
+      CGContextTranslateCTM(context, (self.bounds.size.width/2.93)-(SPEAKER_SIZE*0.5),((self.bounds.size.width/2.93))-(SPEAKER_SIZE*0.5));
       // call the draw speaker functions
       [self drawSpeakers];
       //return the coordinate scheme

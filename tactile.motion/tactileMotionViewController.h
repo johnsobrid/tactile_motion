@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CircleGestureRecognizer.h"
 
 @interface tactileMotionViewController : UIViewController
 
 @property (strong) NSMutableArray *audioObjects;
+
 
 @end
