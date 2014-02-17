@@ -15,6 +15,7 @@
 
 @property (strong) UIColor *colour;
 @property (strong) NSString *label;
+@property CGPoint myCenter;
 
 -(void) dragging:(UIPanGestureRecognizer *)drag;
 

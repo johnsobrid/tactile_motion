@@ -21,6 +21,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDQ-qf-zZd">
+                                <rect key="frame" x="149" y="40" width="399" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -30,6 +36,10 @@
                             <constraint firstItem="WOW-CA-5lB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="erj-kY-H6a"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="controlArea" destination="WOW-CA-5lB" id="6Fc-bf-Lnt"/>
+                        <outlet property="statusField" destination="fDQ-qf-zZd" id="fej-9M-GIc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="QLy-db-bDp">

@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CircleGestureRecognizer.h"
 
-@interface tactileMotionViewController : UIViewController
-
+@interface tactileMotionViewController : UIViewController {
+    IBOutlet UITextField *statusField;
+    IBOutlet controlAreaView *controlArea;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context;
 @property (strong) NSMutableArray *audioObjects;
 
 
