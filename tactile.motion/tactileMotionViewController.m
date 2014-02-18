@@ -48,7 +48,7 @@
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
-       [objectView addObserver:self
+      [objectView addObserver:self
                  forKeyPath:@"myCenter"
                     options:(NSKeyValueObservingOptionNew |
                              NSKeyValueObservingOptionOld)
@@ -67,12 +67,17 @@
         CGPoint loc = theAudioObjectView.myCenter;
         // get center of control area view
         CGPoint cavcenter = controlArea.center;
+       
         loc.x -= cavcenter.x;
         loc.y -= cavcenter.y;
         float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
+        d = d/(controlArea.bounds.size.width/2)*MAX_DISTANCE;
         float theta = atan2f(loc.y,loc.x);
-        
-        [self setStatus:[NSString stringWithFormat:@"%@ %.2f %.2f %.2f %.2f",label,loc.x,loc.y,d,theta]];
+        if (theta < 0.0)
+        {
+           theta = theta + (M_PI *2);
+        }
+        [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
     }
 }
 

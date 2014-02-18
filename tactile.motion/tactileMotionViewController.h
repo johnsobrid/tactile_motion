@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CircleGestureRecognizer.h"
+#import "controlAreaView.h"
+#define MAX_DISTANCE 5
+
 
 @interface tactileMotionViewController : UIViewController {
     IBOutlet UITextField *statusField;

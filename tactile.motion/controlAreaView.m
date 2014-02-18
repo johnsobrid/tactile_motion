@@ -19,9 +19,6 @@
     return self;
 }
 
-#define MAX_DISTANCE 5
-#define SPEAKER_SIZE 40
-#define NUM_OF_SPEAKERS 8
 -(CGFloat)euroOffset { return ([self speakerDivision]/2);}
 -(CGFloat)speakerDivision { return M_PI/(NUM_OF_SPEAKERS/2);}
 

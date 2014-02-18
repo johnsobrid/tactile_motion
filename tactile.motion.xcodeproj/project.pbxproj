@@ -91,6 +91,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F3E976A18B2BE5F001076C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F705A6118A183CC000B0030 /* audioObjectView.h */,
+				4F705A6218A183CC000B0030 /* audioObjectView.m */,
+				4FB0B15118A07671008486F1 /* controlAreaView.h */,
+				4FB0B15218A07671008486F1 /* controlAreaView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4F3E976B18B2BE6A001076C8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F1187D718B15A1C00878073 /* ControlAreaViewController.h */,
+				4F1187D818B15A1C00878073 /* ControlAreaViewController.m */,
+				4FB0B13118A0754E008486F1 /* tactileMotionViewController.h */,
+				4FB0B13218A0754E008486F1 /* tactileMotionViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		4FB0B11018A0754E008486F1 = {
 			isa = PBXGroup;
 			children = (
@@ -125,14 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				4FB0B12E18A0754E008486F1 /* Main.storyboard */,
-				4F705A6118A183CC000B0030 /* audioObjectView.h */,
-				4F705A6218A183CC000B0030 /* audioObjectView.m */,
-				4FB0B15118A07671008486F1 /* controlAreaView.h */,
-				4FB0B15218A07671008486F1 /* controlAreaView.m */,
-				4F1187D718B15A1C00878073 /* ControlAreaViewController.h */,
-				4F1187D818B15A1C00878073 /* ControlAreaViewController.m */,
-				4FB0B13118A0754E008486F1 /* tactileMotionViewController.h */,
-				4FB0B13218A0754E008486F1 /* tactileMotionViewController.m */,
+				4F3E976A18B2BE5F001076C8 /* Views */,
+				4F3E976B18B2BE6A001076C8 /* Controllers */,
 				4F02B44518AC68CE00EB8A0D /* CircleGestureRecognizer.h */,
 				4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */,
 				4FB0B12318A0754E008486F1 /* Supporting Files */,
