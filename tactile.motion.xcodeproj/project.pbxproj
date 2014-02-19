@@ -25,6 +25,7 @@
 		4FB0B14618A0754E008486F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FB0B14418A0754E008486F1 /* InfoPlist.strings */; };
 		4FB0B14818A0754E008486F1 /* tactile_motionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B14718A0754E008486F1 /* tactile_motionTests.m */; };
 		4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B15218A07671008486F1 /* controlAreaView.m */; };
+		4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9F54E18B45188003573BB /* SettingsPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		4FB0B14718A0754E008486F1 /* tactile_motionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tactile_motionTests.m; sourceTree = "<group>"; };
 		4FB0B15118A07671008486F1 /* controlAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlAreaView.h; sourceTree = "<group>"; };
 		4FB0B15218A07671008486F1 /* controlAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlAreaView.m; sourceTree = "<group>"; };
+		4FC9F54D18B45188003573BB /* SettingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPageViewController.h; sourceTree = "<group>"; };
+		4FC9F54E18B45188003573BB /* SettingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 		4F3E976B18B2BE6A001076C8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4FC9F54D18B45188003573BB /* SettingsPageViewController.h */,
+				4FC9F54E18B45188003573BB /* SettingsPageViewController.m */,
 				4F1187D718B15A1C00878073 /* ControlAreaViewController.h */,
 				4F1187D818B15A1C00878073 /* ControlAreaViewController.m */,
 				4FB0B13118A0754E008486F1 /* tactileMotionViewController.h */,
@@ -290,6 +295,7 @@
 				4F1187D918B15A1C00878073 /* ControlAreaViewController.m in Sources */,
 				4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */,
 				4FB0B12D18A0754E008486F1 /* tactileMotionAppDelegate.m in Sources */,
+				4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */,
 				4FB0B13318A0754E008486F1 /* tactileMotionViewController.m in Sources */,
 				4F705A6318A183CC000B0030 /* audioObjectView.m in Sources */,
 				4F02B44718AC68CE00EB8A0D /* CircleGestureRecognizer.m in Sources */,
