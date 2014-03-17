@@ -37,6 +37,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speaker Distance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azl-6C-miC">
+                                <rect key="frame" x="100" y="436" width="195" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="QO6-0N-KAM">
                                 <rect key="frame" x="337" y="318" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -51,8 +58,16 @@
                                     <action selector="numOfObjectsSelector:" destination="LlE-zi-JIn" eventType="valueChanged" id="CbR-Ih-JBJ"/>
                                 </connections>
                             </stepper>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KBV-x0-mBD">
+                                <rect key="frame" x="337" y="449" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="distanceSelector:" destination="LlE-zi-JIn" eventType="valueChanged" id="2pG-fC-CLQ"/>
+                                    <action selector="numOfObjectsSelector:" destination="LlE-zi-JIn" eventType="valueChanged" id="a5k-ZG-6MC"/>
+                                </connections>
+                            </stepper>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKu-IZ-bkA">
-                                <rect key="frame" x="507" y="873" width="160" height="57"/>
+                                <rect key="frame" x="588" y="947" width="160" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -77,11 +92,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgB-rm-4lF">
+                                <rect key="frame" x="469" y="434" width="61" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.233491104" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="settings page" id="2hC-Sr-jDt"/>
                     <connections>
+                        <outlet property="distanceLabel" destination="OgB-rm-4lF" id="5op-5J-BxP"/>
+                        <outlet property="distanceLabelOutlet" destination="KBV-x0-mBD" id="7dv-Ke-AN2"/>
                         <outlet property="objectLabelOutlet" destination="kdK-gh-wU7" id="zv4-d5-Jm9"/>
                         <outlet property="objectsLabel" destination="Z5I-1d-Qej" id="O8m-vY-6DP"/>
                         <outlet property="speakersLabel" destination="RDU-RF-MbS" id="hZf-Ak-rf4"/>
@@ -115,6 +139,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAi-vw-saZ">
+                                <rect key="frame" x="20" y="39" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LlE-zi-JIn" kind="push" id="H32-5O-cZs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -142,7 +178,7 @@
         <!--Navigation Controller-->
         <scene sceneID="UxJ-uU-OQJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vrf-gb-9NI" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="vrf-gb-9NI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wwj-4I-CZD">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -163,4 +199,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="H32-5O-cZs"/>
+    </inferredMetricsTieBreakers>
 </document>

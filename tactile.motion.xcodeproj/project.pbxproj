@@ -94,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F05E6E918B59CE1004F1FF7 /* GestureRecognisers */ = {
+			isa = PBXGroup;
+			children = (
+				4F02B44518AC68CE00EB8A0D /* CircleGestureRecognizer.h */,
+				4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */,
+			);
+			name = GestureRecognisers;
+			sourceTree = "<group>";
+		};
 		4F3E976A18B2BE5F001076C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,8 +163,7 @@
 				4FB0B12E18A0754E008486F1 /* Main.storyboard */,
 				4F3E976A18B2BE5F001076C8 /* Views */,
 				4F3E976B18B2BE6A001076C8 /* Controllers */,
-				4F02B44518AC68CE00EB8A0D /* CircleGestureRecognizer.h */,
-				4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */,
+				4F05E6E918B59CE1004F1FF7 /* GestureRecognisers */,
 				4FB0B12318A0754E008486F1 /* Supporting Files */,
 			);
 			path = tactile.motion;
@@ -238,7 +246,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = tactileMotion;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = bdj;
 				TargetAttributes = {
 					4FB0B13918A0754E008486F1 = {
@@ -352,7 +360,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -392,7 +399,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -451,7 +457,6 @@
 		4FB0B14F18A0754E008486F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/tactile.motion.app/tactile.motion";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -474,7 +479,6 @@
 		4FB0B15018A0754E008486F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/tactile.motion.app/tactile.motion";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

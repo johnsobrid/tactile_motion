@@ -32,14 +32,13 @@
    CGRect bounds = [[self view] bounds];
    
    float boxWidth = 76;
-   float gapWidth = (bounds.size.width - (boxWidth*kNumAudioObjects)) / (kNumAudioObjects + 1);
-   
+   float gapWidth = (bounds.size.width - (boxWidth * kNumAudioObjects)) / (kNumAudioObjects + 1);
    float x = gapWidth;
    float y = bounds.size.height - gapWidth - boxWidth;
    
    float xIncr = boxWidth + gapWidth;
    
-   for (int i=0;i<kNumAudioObjects;i++,x+=xIncr) {
+   for (int i=0;i< kNumAudioObjects;i++,x+=xIncr) {
       CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
                                                                     colour: [self objectColour:i]

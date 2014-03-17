@@ -11,16 +11,15 @@
 @interface SettingsPageViewController ()
 - (IBAction)numOfSpeakersSelector:(id)sender;
 - (IBAction)numOfObjectsSelector:(id)sender;
-@property (strong, nonatomic) IBOutlet UIStepper *speakersLabelOutlet;
-@property (strong, nonatomic) IBOutlet UIStepper *objectLabelOutlet;
+- (IBAction)distanceSelector:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *speakersLabel;
 @property (strong, nonatomic) IBOutlet UILabel *objectsLabel;
-
+@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @end
 
 @implementation SettingsPageViewController
-
+int saveSpeakers;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,4 +39,26 @@
 - (IBAction)numOfObjectsSelector:(id)sender {
    self.objectsLabel.text = [NSString stringWithFormat:@"%i",(int)[self.objectLabelOutlet value]];
 }
+
+- (IBAction)distanceSelector:(id)sender {
+   self.distanceLabel.text = [NSString stringWithFormat:@"%i",(int)[self.distanceLabelOutlet value]];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+   [super viewWillDisappear:NO];
+   [self saveSettings];
+      NSLog(@"BANG_ONE");
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+   [super viewWillAppear:NO];
+   [self.speakersLabelOutlet setValue:saveSpeakers];
+}
+-(void)saveSettings
+{
+   saveSpeakers = [self.speakersLabelOutlet value];
+   NSLog(@"BANG");
+}
+
+
 @end

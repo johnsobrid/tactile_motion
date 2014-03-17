@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CircleGestureRecognizer.h"
 #import "controlAreaView.h"
+#import "SettingsPageViewController.h"
+
 #define MAX_DISTANCE 5
 
 

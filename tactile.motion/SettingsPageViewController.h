@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsPageViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UIStepper *speakersLabelOutlet;
+@property (strong, nonatomic) IBOutlet UIStepper *objectLabelOutlet;
+@property (strong, nonatomic) IBOutlet UIStepper *distanceLabelOutlet;
 @end
