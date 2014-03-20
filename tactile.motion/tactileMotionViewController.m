@@ -13,6 +13,15 @@
 
 @implementation tactileMotionViewController
 
+- (id) init	{
+	if (self = [super init])
+   {
+      //	by default, the osc manager's delegate will be told when osc messages are received
+      [manager setDelegate:self];
+   }
+   return self;
+}
+
 
 - (void)viewDidLoad
 {
@@ -77,6 +86,8 @@
            theta = theta + (M_PI *2);
         }
         [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+       [self oscSend:[NSString stringWithFormat:@"%@/%.2f/%.2f", label, d,theta]]; // should we do this here or from the objects view?
+       
     }
 }
 
@@ -101,5 +112,15 @@
     [statusField setText:status];
 }
 
+-(void)oscSend:(NSString *)messageString
+{
+   //send the position over OSC
+   manager = [[OSCManager alloc]init]; //if this line of code is here then it works, but it doesn't seem to make much sense to me as to why we would put it here, in demo's they put it in the init function but when I place it there it creates errors
+   
+   OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
+   outPort = [manager createNewOutputToAddress:@"127.0.0.1" atPort:1234 withLabel:@"Output"];
+   [outPort sendThisMessage:newMessage];
+
+}
 @end
 
