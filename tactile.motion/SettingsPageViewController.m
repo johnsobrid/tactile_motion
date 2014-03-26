@@ -12,6 +12,7 @@
 - (IBAction)numOfSpeakersSelector:(id)sender;
 - (IBAction)numOfObjectsSelector:(id)sender;
 - (IBAction)distanceSelector:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UILabel *speakersLabel;
 @property (strong, nonatomic) IBOutlet UILabel *objectsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
@@ -47,7 +48,7 @@ int saveSpeakers;
 {
    [super viewWillDisappear:NO];
    [self saveSettings];
-      NSLog(@"BANG_ONE");
+   
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -57,7 +58,6 @@ int saveSpeakers;
 -(void)saveSettings
 {
    saveSpeakers = [self.speakersLabelOutlet value];
-   NSLog(@"BANG");
 }
 
 

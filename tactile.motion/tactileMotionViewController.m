@@ -11,6 +11,12 @@
 
 #define kNumAudioObjects 8
 
+@interface tactileMotionViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *ipInputField;
+@property (strong, nonatomic) IBOutlet UITextField *portInputField;
+
+@end
+
 @implementation tactileMotionViewController
 - (IBAction)playPressed:(id)sender {
    [self oscSend:[NSString stringWithFormat:@"/play/1"]];
@@ -18,6 +24,8 @@
 - (IBAction)stopPressed:(id)sender {
    [self oscSend:[NSString stringWithFormat:@"/play/0"]];
 }
+
+
 
 - (id) init	{
 	if (self = [super init])
@@ -33,6 +41,7 @@
 {
        [super viewDidLoad];
        [self audioObjectInit];
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,9 +131,11 @@
 {
    //send the position over OSC
    manager = [[OSCManager alloc]init]; //if this line of code is here then it works, but it doesn't seem to make much sense to me as to why we would put it here, in demo's they put it in the init function but when I place it there it creates errors
+   outPort = [manager createNewOutputToAddress:[self.ipInputField text] atPort:[[self.portInputField text]intValue] withLabel:@"Output"];
+
    
    OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
-   outPort = [manager createNewOutputToAddress:@"127.0.0.1" atPort:1234 withLabel:@"Output"];
+   
    [outPort sendThisMessage:newMessage];
 
 }

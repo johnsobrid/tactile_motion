@@ -19,6 +19,8 @@
     IBOutlet UITextField *statusField;
     IBOutlet controlAreaView *controlArea;
    
+   
+   
    OSCManager *manager;
    OSCOutPort *outPort;
    OSCInPort *inPort;
