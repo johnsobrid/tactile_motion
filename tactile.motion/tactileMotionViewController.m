@@ -12,6 +12,12 @@
 #define kNumAudioObjects 8
 
 @implementation tactileMotionViewController
+- (IBAction)playPressed:(id)sender {
+   [self oscSend:[NSString stringWithFormat:@"/play/1"]];
+}
+- (IBAction)stopPressed:(id)sender {
+   [self oscSend:[NSString stringWithFormat:@"/play/0"]];
+}
 
 - (id) init	{
 	if (self = [super init])
@@ -122,5 +128,6 @@
    [outPort sendThisMessage:newMessage];
 
 }
+
 @end
 
