@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsPageViewController : UIViewController
+@interface SettingsPageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *networkTV;
 @property (strong, nonatomic) IBOutlet UIStepper *speakersLabelOutlet;
 @property (strong, nonatomic) IBOutlet UIStepper *objectLabelOutlet;
 @property (strong, nonatomic) IBOutlet UIStepper *distanceLabelOutlet;

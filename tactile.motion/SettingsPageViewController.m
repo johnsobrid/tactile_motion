@@ -60,5 +60,26 @@ int saveSpeakers;
    saveSpeakers = [self.speakersLabelOutlet value];
 }
 
+//tableView stuff
+-(NSInteger)numberOfSectionsInTableView:networkTV
+{
+   return 1;
+}
 
+-(NSInteger)tableView:networkTV numberOfRowsInSection:(NSInteger)section
+{
+   return 6;
+}
+-(UITableViewCell *)tableView:networkTV cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   static NSString *CellIdentifier = @"Cell";
+   UITableViewCell *cell = [networkTV dequeueReusableCellWithIdentifier:CellIdentifier];
+   if (cell == nil)
+   {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+      cell.textLabel.textColor = [UIColor redColor];
+   }
+   cell.textLabel.text = [NSString stringWithFormat:@"Hello %d", indexPath.row];
+   return cell;
+}
 @end
