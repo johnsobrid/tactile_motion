@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsPageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+   NSMutableArray *availableNetworks;
+}
 @property (strong, nonatomic) IBOutlet UITableView *networkTV;
 @property (strong, nonatomic) IBOutlet UIStepper *speakersLabelOutlet;
 @property (strong, nonatomic) IBOutlet UIStepper *objectLabelOutlet;

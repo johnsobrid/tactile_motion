@@ -25,6 +25,7 @@ int saveSpeakers;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+   availableNetworks = [[NSMutableArray alloc]initWithObjects:@"array1", @"array2",@"array3",@"array4",nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +69,7 @@ int saveSpeakers;
 
 -(NSInteger)tableView:networkTV numberOfRowsInSection:(NSInteger)section
 {
-   return 6;
+   return [availableNetworks count];
 }
 -(UITableViewCell *)tableView:networkTV cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -79,7 +80,8 @@ int saveSpeakers;
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
       cell.textLabel.textColor = [UIColor redColor];
    }
-   cell.textLabel.text = [NSString stringWithFormat:@"Hello %d", indexPath.row];
+  // NSLog([availableNetworks objectAtIndex:indexPath.row]);
+   cell.textLabel.text = [availableNetworks objectAtIndex:indexPath.row];
    return cell;
 }
 @end
