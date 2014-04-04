@@ -22,6 +22,7 @@
    IBOutlet UILabel *receivingPortField;
    IBOutlet UILabel *ipField;
    IBOutlet UILabel *portField;
+   IBOutlet UILabel *testingLabel;
 }
 @property (strong, nonatomic) IBOutlet UITableView *networkTV;
 @property (strong, nonatomic) IBOutlet UIStepper *speakersLabelOutlet;

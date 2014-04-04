@@ -81,8 +81,7 @@ int saveSpeakers;
 	manualOutport = [manager createNewOutputToAddress:@"127.0.0.1" atPort:[inport port] withLabel:@"Manual Output"];
 	if (manualOutport == nil)
 		NSLog(@"\t\terror creating output B");
-	
-	
+		
 	//	populate the IP field string with  this machine's IP and the port of my dedicated input
 	NSArray			*ips = [OSCManager hostIPv4Addresses];
 	if (ips!=nil && [ips count]>0)	{
@@ -102,6 +101,22 @@ int saveSpeakers;
 	//	fake an outputs-changed notification to make sure my list of destinations updates (in case it refreshes before i'm awake)
 	[self oscOutputsChangedNotification:nil];
 }
+
+-(void)oscOutputsChangedNotification:(NSNotification *)note
+{
+   //NSLog(@"%s",__func__);
+	NSArray			*portLabelArray = nil;
+   
+	//	remove the items in the pop-up button
+	[availableNetworks removeAllObjects];
+	//	get an array of the out port labels
+	portLabelArray = [manager outPortLabelArray];
+	//	push the labels to the pop-up button of destinations
+	[availableNetworks addObjectsFromArray:portLabelArray];
+   //[networkTV reloadData];
+   
+}
+
 //tableView stuff
 -(NSInteger)numberOfSectionsInTableView:networkTV
 {
@@ -126,18 +141,29 @@ int saveSpeakers;
    return cell;
 }
 
--(void)oscOutputsChangedNotification:(NSNotification *)note
+
+-(void)tableView:networkTV didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   //NSLog(@"%s",__func__);
-	NSArray			*portLabelArray = nil;
+  // UITableViewCell *selectedCell = [networkTV cellForRowAtIndexPath:indexPath];
+   [testingLabel setText:[availableNetworks objectAtIndex:indexPath.row]];
    
-	//	remove the items in the pop-up button
-	[availableNetworks removeAllObjects];
-	//	get an array of the out port labels
-	portLabelArray = [manager outPortLabelArray];
-	//	push the labels to the pop-up button of destinations
-	[availableNetworks addObjectsFromArray:portLabelArray];
+   long				selectedIndex = indexPath.row;
+	OSCOutPort		*selectedPort = nil;
+	//	figure out the index of the selected item
+	if (selectedIndex == -1)
+		return;
+	//	find the output port corresponding to the index of the selected item
+	selectedPort = [manager findOutputForIndex:selectedIndex];
+	if (selectedPort == nil)
+		return;
+	//	push the data of the selected output to the fields
+	[ipField setText:[selectedPort addressString]];
+	[portField setText:[NSString stringWithFormat:@"%d",[selectedPort port]]];
+	//	bump the fields (which updates the manualOutPort, which is the only out port sending data)
+	//[self setupFieldUsed:nil];
 }
+
+
 //seque functions
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
