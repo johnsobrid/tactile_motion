@@ -12,8 +12,7 @@
 #define kNumAudioObjects 8
 
 @interface tactileMotionViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *ipInputField;
-@property (strong, nonatomic) IBOutlet UITextField *portInputField;
+
 
 @end
 
@@ -42,6 +41,10 @@
        [super viewDidLoad];
        [self audioObjectInit];
    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+   [self upDateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,6 +141,11 @@
    
    [outPort sendThisMessage:newMessage];
 
+}
+
+-(void)upDateUI
+{
+   [self.ipInputField setText:@"notWorking"];
 }
 
 @end

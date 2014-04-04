@@ -19,17 +19,19 @@
     IBOutlet UITextField *statusField;
     IBOutlet controlAreaView *controlArea;
    
-   
-   
    OSCManager *manager;
    OSCOutPort *outPort;
    OSCInPort *inPort;
 
 }
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context;
 @property (strong) NSMutableArray *audioObjects;
+@property (strong, nonatomic)NSString *testSegue;
+@property (strong, nonatomic) IBOutlet UITextField *ipInputField;
+@property (strong, nonatomic) IBOutlet UITextField *portInputField;
 
 @end

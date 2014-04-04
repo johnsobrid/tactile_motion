@@ -25,7 +25,10 @@ int saveSpeakers;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-   availableNetworks = [[NSMutableArray alloc]initWithObjects:@"array1", @"array2",@"array3",@"array4",nil];
+   availableNetworks = [[NSMutableArray alloc]init];
+   manager = [[OSCManager alloc]init];
+   [manager setDelegate:self];
+   [self setupNetwork];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,12 +58,50 @@ int saveSpeakers;
 {
    [super viewWillAppear:NO];
    [self.speakersLabelOutlet setValue:saveSpeakers];
+   
 }
 -(void)saveSettings
 {
    saveSpeakers = [self.speakersLabelOutlet value];
 }
 
+-(void)setupNetwork
+{
+   NSString		*ipFieldString;
+	id				anObj = nil;
+	
+	//	tell the osc manager to make an input to receive from a given port
+	inport = [manager createNewInput];
+	
+	//	make an out port to my machine's dedicated in port
+	anObj = [manager createNewOutputToAddress:@"127.0.0.1" atPort:[inport port] withLabel:@"This app"];
+	if (anObj == nil)
+		NSLog(@"\t\terror creating output A");
+	//	make another out port to hold the manual settings
+	manualOutport = [manager createNewOutputToAddress:@"127.0.0.1" atPort:[inport port] withLabel:@"Manual Output"];
+	if (manualOutport == nil)
+		NSLog(@"\t\terror creating output B");
+	
+	
+	//	populate the IP field string with  this machine's IP and the port of my dedicated input
+	NSArray			*ips = [OSCManager hostIPv4Addresses];
+	if (ips!=nil && [ips count]>0)	{
+		ipFieldString = [NSString stringWithFormat:@"%@, port",[ips objectAtIndex:0]];
+		[receivingAddressField setText:ipFieldString];
+	}
+	//	populate the receiving port field with the in port's port
+	[receivingPortField setText:[NSString stringWithFormat:@"%d",[inport port]]];
+	
+   //	populate the sending port field from the current manual out port
+	[portField setText:[NSString stringWithFormat:@"%d",[manualOutport port]]];
+	
+	//	register to receive notifications that the list of osc outputs has changed
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oscOutputsChangedNotification:) name:OSCOutPortsChangedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(oscOutputsChangedNotification:) name:OSCInPortsChangedNotification object:nil];
+	
+	//	fake an outputs-changed notification to make sure my list of destinations updates (in case it refreshes before i'm awake)
+	[self oscOutputsChangedNotification:nil];
+}
 //tableView stuff
 -(NSInteger)numberOfSectionsInTableView:networkTV
 {
@@ -69,7 +110,7 @@ int saveSpeakers;
 
 -(NSInteger)tableView:networkTV numberOfRowsInSection:(NSInteger)section
 {
-   return [availableNetworks count];
+   return 2;
 }
 -(UITableViewCell *)tableView:networkTV cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -83,5 +124,33 @@ int saveSpeakers;
   // NSLog([availableNetworks objectAtIndex:indexPath.row]);
    cell.textLabel.text = [availableNetworks objectAtIndex:indexPath.row];
    return cell;
+}
+
+-(void)oscOutputsChangedNotification:(NSNotification *)note
+{
+   //NSLog(@"%s",__func__);
+	NSArray			*portLabelArray = nil;
+   
+	//	remove the items in the pop-up button
+	[availableNetworks removeAllObjects];
+	//	get an array of the out port labels
+	portLabelArray = [manager outPortLabelArray];
+	//	push the labels to the pop-up button of destinations
+	[availableNetworks addObjectsFromArray:portLabelArray];
+}
+//seque functions
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+   if ([[segue identifier]isEqualToString:@"testSegue"]) {
+      if ([segue.destinationViewController isKindOfClass:[tactileMotionViewController class]]) {
+         tactileMotionViewController *tmvc = segue.destinationViewController;
+         tmvc.portInputField.text = [NSString stringWithFormat:@"working!"];
+         [tmvc.ipInputField setText:[NSString stringWithFormat:@"ipfield"]];
+         tmvc.testLabel.text = [availableNetworks objectAtIndex:1];
+      }
+   }
+}
+- (IBAction)testSeguePushed:(id)sender {
+   
 }
 @end

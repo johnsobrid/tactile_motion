@@ -108,6 +108,38 @@
                                     <outlet property="delegate" destination="LlE-zi-JIn" id="U5D-LU-2n2"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXZ-hw-e16">
+                                <rect key="frame" x="593" y="630" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0Y-2u-7zc">
+                                <rect key="frame" x="593" y="659" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-1C-4Fe">
+                                <rect key="frame" x="591" y="688" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83g-dW-fgW">
+                                <rect key="frame" x="593" y="717" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.233491104" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -115,9 +147,13 @@
                     <connections>
                         <outlet property="distanceLabel" destination="OgB-rm-4lF" id="5op-5J-BxP"/>
                         <outlet property="distanceLabelOutlet" destination="KBV-x0-mBD" id="7dv-Ke-AN2"/>
+                        <outlet property="ipField" destination="qaS-1C-4Fe" id="Eai-dI-ShX"/>
                         <outlet property="networkTV" destination="6kR-EY-Al2" id="CES-qD-WmV"/>
                         <outlet property="objectLabelOutlet" destination="kdK-gh-wU7" id="zv4-d5-Jm9"/>
                         <outlet property="objectsLabel" destination="Z5I-1d-Qej" id="O8m-vY-6DP"/>
+                        <outlet property="portField" destination="83g-dW-fgW" id="bFJ-S9-Cn0"/>
+                        <outlet property="receivingAddressField" destination="LXZ-hw-e16" id="pBS-Zr-pO8"/>
+                        <outlet property="receivingPortField" destination="b0Y-2u-7zc" id="LYO-xx-1qs"/>
                         <outlet property="speakersLabel" destination="RDU-RF-MbS" id="hZf-Ak-rf4"/>
                         <outlet property="speakersLabelOutlet" destination="QO6-0N-KAM" id="OaC-Lv-shT"/>
                     </connections>
@@ -214,6 +250,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RR-MM-4h7">
+                                <rect key="frame" x="51" y="884" width="204" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -229,6 +273,7 @@
                         <outlet property="ipInputField" destination="JYU-G6-U7E" id="c1g-vg-r8K"/>
                         <outlet property="portInputField" destination="cKn-tJ-p8h" id="dYp-2R-HBc"/>
                         <outlet property="statusField" destination="fDQ-qf-zZd" id="fej-9M-GIc"/>
+                        <outlet property="testLabel" destination="3RR-MM-4h7" id="S5O-NW-E07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
