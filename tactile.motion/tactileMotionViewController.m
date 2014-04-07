@@ -44,7 +44,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-   [self upDateUI];
+   manager = [[OSCManager alloc]init]; //if this line of code is here then it works, but it doesn't seem to make much sense to me as to why we would put it here, in demo's they put it in the init function but when I place it there it creates errors
+   outPort = [manager createNewOutputToAddress:_AddressInUse atPort:[_portInUse intValue] withLabel:@"Output"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,19 +134,11 @@
 -(void)oscSend:(NSString *)messageString
 {
    //send the position over OSC
-   manager = [[OSCManager alloc]init]; //if this line of code is here then it works, but it doesn't seem to make much sense to me as to why we would put it here, in demo's they put it in the init function but when I place it there it creates errors
-   outPort = [manager createNewOutputToAddress:[self.ipInputField text] atPort:[[self.portInputField text]intValue] withLabel:@"Output"];
-
    
    OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
    
    [outPort sendThisMessage:newMessage];
 
-}
-
--(void)upDateUI
-{
-   [self.ipInputField setText:@"notWorking"];
 }
 
 @end

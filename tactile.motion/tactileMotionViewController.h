@@ -19,10 +19,10 @@
     IBOutlet UITextField *statusField;
     IBOutlet controlAreaView *controlArea;
    
+   IBOutlet UILabel *testingField;
    OSCManager *manager;
    OSCOutPort *outPort;
    OSCInPort *inPort;
-
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -30,8 +30,6 @@
                         change:(NSDictionary *)change
                        context:(void *)context;
 @property (strong) NSMutableArray *audioObjects;
-@property (strong, nonatomic)NSString *testSegue;
-@property (strong, nonatomic) IBOutlet UITextField *ipInputField;
-@property (strong, nonatomic) IBOutlet UITextField *portInputField;
-
+@property (strong, nonatomic) NSString *AddressInUse;
+@property (strong,nonatomic) NSString *portInUse;
 @end

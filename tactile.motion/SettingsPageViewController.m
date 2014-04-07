@@ -115,7 +115,7 @@ int saveSpeakers;
 	//	get an array of the out port labels
 	portLabelArray = [manager outPortLabelArray];
 	//	push the labels to the pop-up button of destinations
-	[availableNetworks addObjectsFromArray:portLabelArray];   
+	[availableNetworks addObjectsFromArray:portLabelArray];
    [_networkTV reloadData];
    
 }
@@ -139,7 +139,7 @@ int saveSpeakers;
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
       cell.textLabel.textColor = [UIColor redColor];
    }
-   cell.textLabel.text = [NSString stringWithFormat:@"index %ld %@",(long)indexPath.row,[availableNetworks objectAtIndex:indexPath.row]];
+   cell.textLabel.text = [NSString stringWithFormat:@" %@",[availableNetworks objectAtIndex:indexPath.row]];
    return cell;
 }
 
@@ -197,9 +197,8 @@ int saveSpeakers;
    if ([[segue identifier]isEqualToString:@"testSegue"]) {
       if ([segue.destinationViewController isKindOfClass:[tactileMotionViewController class]]) {
          tactileMotionViewController *tmvc = segue.destinationViewController;
-         [tmvc.portInputField setText:[portField text]];
-         tmvc.ipInputField.text = [ipField text];
-         tmvc.testLabel.text = [availableNetworks objectAtIndex:1];
+         tmvc.AddressInUse = [ipField text];
+         tmvc.portInUse =[portField text];
       }
    }
 }
