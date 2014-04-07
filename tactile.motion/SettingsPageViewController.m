@@ -21,6 +21,8 @@
 
 @implementation SettingsPageViewController
 int saveSpeakers;
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,6 +31,7 @@ int saveSpeakers;
    manager = [[OSCManager alloc]init];
    [manager setDelegate:self];
    [self setupNetwork];
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +88,7 @@ int saveSpeakers;
 	//	populate the IP field string with  this machine's IP and the port of my dedicated input
 	NSArray			*ips = [OSCManager hostIPv4Addresses];
 	if (ips!=nil && [ips count]>0)	{
-		ipFieldString = [NSString stringWithFormat:@"%@, port",[ips objectAtIndex:0]];
+		ipFieldString = [NSString stringWithFormat:@"%@",[ips objectAtIndex:0]];
 		[receivingAddressField setText:ipFieldString];
 	}
 	//	populate the receiving port field with the in port's port
@@ -112,8 +115,8 @@ int saveSpeakers;
 	//	get an array of the out port labels
 	portLabelArray = [manager outPortLabelArray];
 	//	push the labels to the pop-up button of destinations
-	[availableNetworks addObjectsFromArray:portLabelArray];
-   //[networkTV reloadData];
+	[availableNetworks addObjectsFromArray:portLabelArray];   
+   [_networkTV reloadData];
    
 }
 
@@ -125,7 +128,7 @@ int saveSpeakers;
 
 -(NSInteger)tableView:networkTV numberOfRowsInSection:(NSInteger)section
 {
-   return 2;
+   return [availableNetworks count];
 }
 -(UITableViewCell *)tableView:networkTV cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -136,8 +139,7 @@ int saveSpeakers;
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
       cell.textLabel.textColor = [UIColor redColor];
    }
-  // NSLog([availableNetworks objectAtIndex:indexPath.row]);
-   cell.textLabel.text = [availableNetworks objectAtIndex:indexPath.row];
+   cell.textLabel.text = [NSString stringWithFormat:@"index %ld %@",(long)indexPath.row,[availableNetworks objectAtIndex:indexPath.row]];
    return cell;
 }
 
@@ -145,7 +147,7 @@ int saveSpeakers;
 -(void)tableView:networkTV didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   // UITableViewCell *selectedCell = [networkTV cellForRowAtIndexPath:indexPath];
-   [testingLabel setText:[availableNetworks objectAtIndex:indexPath.row]];
+  
    
    long				selectedIndex = indexPath.row;
 	OSCOutPort		*selectedPort = nil;
@@ -160,7 +162,32 @@ int saveSpeakers;
 	[ipField setText:[selectedPort addressString]];
 	[portField setText:[NSString stringWithFormat:@"%d",[selectedPort port]]];
 	//	bump the fields (which updates the manualOutPort, which is the only out port sending data)
-	//[self setupFieldUsed:nil];
+  
+   //	populate the sending port field from the current manual out port
+	//NSLog(@"%s",__func__);
+	//	first take care of the port (there's only one) which is receiving data
+	//	push the settings in the port field to the in port
+   
+	[inport setPort:[receivingPortField.text intValue]];
+	
+   //	push the actual port i'm receiving on to the text field (if anything went wrong when changing the port, it should revert to the last port #)
+   [receivingPortField setText:[NSString stringWithFormat:@"%d",[inport port]]];
+   
+	//	now take care of the ports which relate to sending data
+	//	push the settings on the ui items to the manualOutPort, which is the only out port actually sending data
+	[manualOutport setAddressString:ipField.text];
+	[ipField setText:[manualOutport addressString]];
+	[manualOutport setPort:[portField.text intValue]];
+	[portField setText:[NSString stringWithFormat:@"%d",[manualOutport port]]];
+	
+   //	since the port this app receives on may have changed, i have to adjust the out port for the "This app" output so it continues to point to the correct address
+	id			anObj = [manager findOutputWithLabel:@"This app"];
+	if (anObj != nil)	{
+		//[anObj setPort:[receivingPortField.text intValue]];
+	}
+   
+   [testingLabel setText:[availableNetworks objectAtIndex:selectedIndex]];
+   
 }
 
 
@@ -170,13 +197,11 @@ int saveSpeakers;
    if ([[segue identifier]isEqualToString:@"testSegue"]) {
       if ([segue.destinationViewController isKindOfClass:[tactileMotionViewController class]]) {
          tactileMotionViewController *tmvc = segue.destinationViewController;
-         tmvc.portInputField.text = [NSString stringWithFormat:@"working!"];
-         [tmvc.ipInputField setText:[NSString stringWithFormat:@"ipfield"]];
+         [tmvc.portInputField setText:[portField text]];
+         tmvc.ipInputField.text = [ipField text];
          tmvc.testLabel.text = [availableNetworks objectAtIndex:1];
       }
    }
 }
-- (IBAction)testSeguePushed:(id)sender {
-   
-}
+
 @end
