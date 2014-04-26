@@ -23,6 +23,13 @@
    OSCManager *manager;
    OSCOutPort *outPort;
    OSCInPort *inPort;
+
+//circle
+   NSMutableArray *points;
+   CGPoint _firstTouch;
+   NSTimeInterval _firstTouchTime;
+   BOOL circleDetected;
+
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -32,4 +39,21 @@
 @property (strong) NSMutableArray *audioObjects;
 @property (strong, nonatomic) NSString *AddressInUse;
 @property (strong,nonatomic) NSString *portInUse;
+
+//circleChecks
+@property CGFloat circleClosureAngleVariance;
+/// Maximum distance allowed between the two end points, in pixels
+@property CGFloat circleClosureDistanceVariance;
+/// Maximum time allowed to complete a circle, in seconds
+@property CGFloat maximumCircleTime;
+@property CGFloat radiusVariancePercent;
+@property NSInteger overlapTolerance;
+/// The minimum number of points that should make up a circle
+@property NSInteger minimumNumPoints;
+
+@property (readonly) CGPoint center;
+@property (readonly) CGFloat radius;
+@property (readonly) NSArray *points;
+
+
 @end

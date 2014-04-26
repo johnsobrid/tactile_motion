@@ -9,7 +9,13 @@
 #import "tactileMotionViewController.h"
 #import "audioObjectView.h"
 
+
+
 #define kNumAudioObjects 8
+
+//circle stuff
+
+
 
 @interface tactileMotionViewController ()
 
@@ -17,6 +23,8 @@
 @end
 
 @implementation tactileMotionViewController
+
+
 - (IBAction)playPressed:(id)sender {
    [self oscSend:[NSString stringWithFormat:@"/play/1"]];
 }
@@ -31,6 +39,17 @@
    {
       //	by default, the osc manager's delegate will be told when osc messages are received
       [manager setDelegate:self];
+      _circleClosureAngleVariance = 45.0;
+      _circleClosureDistanceVariance = 200.0;
+      _maximumCircleTime = 3.0;
+      _radiusVariancePercent = 25.0;
+      _overlapTolerance = 3;
+      _minimumNumPoints = 6;
+      points = [[NSMutableArray alloc] init];
+      _firstTouch = CGPointZero;
+      _firstTouchTime = 0.0;
+      _center = CGPointZero;
+      _radius = 0.0;
    }
    return self;
 }
@@ -80,6 +99,14 @@
                     options:(NSKeyValueObservingOptionNew |
                              NSKeyValueObservingOptionOld)
                     context:NULL];
+      [objectView addObserver:self
+                   forKeyPath:@"endPoint"
+                      options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                      context:NULL];
+      [objectView addObserver:self
+                   forKeyPath:@"startPoint"
+                      options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                      context:NULL];
    }
 }
 
@@ -92,6 +119,8 @@
         audioObjectView *theAudioObjectView = object;
         NSString *label = [theAudioObjectView label];
         CGPoint loc = theAudioObjectView.myCenter;
+       [self updateCircle:loc];
+
         // get center of control area view
         CGPoint cavcenter = controlArea.center;
        
@@ -104,12 +133,19 @@
         {
            theta = theta + (M_PI *2);
         }
-        [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+//[self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
        [self oscSend:[NSString stringWithFormat:@"%@/%.2f/%.2f", label, d,theta]]; // should we do this here or from the objects view?
-       
     }
+   else if ([keyPath isEqual:@"startPoint"]) {
+       audioObjectView *theAudioObjectView = object;
+       [self firstTouch:theAudioObjectView.startPoint];
+      
+   }
+   else if ([keyPath isEqual:@"endPoint"]) {
+      audioObjectView *theAudioObjectView = object;
+      [self lastTouch:theAudioObjectView.endPoint];
+   }
 }
-
 
 -(UIColor *)objectColour: (NSInteger) position
 {
@@ -124,7 +160,6 @@
                                     [UIColor colorWithRed:15/255.0 green:206/255.0 blue:205/255.0 alpha:0.8], nil];
 
    return [ colourPallete objectAtIndex:position];
-
 }
 
 - (void)setStatus:(NSString*)status {
@@ -140,6 +175,158 @@
    [outPort sendThisMessage:newMessage];
 
 }
+
+//circle stuff
+- (NSArray *) points
+{
+   NSMutableArray *allPoints = [points mutableCopy];
+   [allPoints insertObject:NSStringFromCGPoint(_firstTouch) atIndex:0];
+   return [NSArray arrayWithArray:allPoints];
+}
+
+// reset at the end of touch event
+- (void) circleReset
+{
+   [points removeAllObjects];
+   _firstTouch = CGPointZero;
+   _firstTouchTime = 0.0;
+   _center = CGPointZero;
+   _radius = 0.0;
+}
+
+-(void)firstTouch:(CGPoint)position
+{
+   _firstTouch = position;
+   _firstTouchTime = [NSDate timeIntervalSinceReferenceDate];
+}
+-(void)updateCircle:(CGPoint)position
+{
+   CGPoint startPoint = position;
+   [points addObject:NSStringFromCGPoint(startPoint)];
+}
+-(void)lastTouch:(CGPoint)position
+{
+   CGPoint endPoint = position;
+   [points addObject:NSStringFromCGPoint(endPoint)];
+   circleDetected = [self check:endPoint];
+   NSLog(circleDetected ? @"YES" : @"NO");
+   [self circleReset];
+}
+-(BOOL)check:(CGPoint)endPoint
+{
+   NSLog(@"checkingTheCircle");
+   // Didn't finish close enough to starting point
+   if ( distanceBetweenPoints(_firstTouch, endPoint) > _circleClosureDistanceVariance ) {
+      return NO;
+   }
+   
+   // Took too long to draw
+   if ( [NSDate timeIntervalSinceReferenceDate] - _firstTouchTime > _maximumCircleTime ) {
+      return NO;
+   }
+   
+   // Not enough points
+   if ( [points count] < _minimumNumPoints ) {
+     return NO;
+   }
+   
+   CGPoint leftMost = _firstTouch;
+   NSUInteger leftMostIndex = NSUIntegerMax;
+   CGPoint topMost = _firstTouch;
+   NSUInteger topMostIndex = NSUIntegerMax;
+   CGPoint rightMost = _firstTouch;
+   NSUInteger  rightMostIndex = NSUIntegerMax;
+   CGPoint bottomMost = _firstTouch;
+   NSUInteger bottomMostIndex = NSUIntegerMax;
+   
+   // Loop through touches and find out if outer limits of the circle
+   int index = 0;
+   for ( NSString *onePointString in points ) {
+      CGPoint onePoint = CGPointFromString(onePointString);
+      if ( onePoint.x > rightMost.x ) {
+         rightMost = onePoint;
+         rightMostIndex = index;
+      }
+      if ( onePoint.x < leftMost.x ) {
+         leftMost = onePoint;
+         leftMostIndex = index;
+      }
+      if ( onePoint.y > topMost.y ) {
+         topMost = onePoint;
+         topMostIndex = index;
+      }
+      if ( onePoint.y < bottomMost.y ) {
+         onePoint = bottomMost;
+         bottomMostIndex = index;
+      }
+      index++;
+   }
+   
+   // If startPoint is one of the extreme points, take set it
+   if ( rightMostIndex == NSUIntegerMax ) {
+      rightMost = _firstTouch;
+   }
+   if ( leftMostIndex == NSUIntegerMax ) {
+      leftMost = _firstTouch;
+   }
+   if ( topMostIndex == NSUIntegerMax ) {
+      topMost = _firstTouch;
+   }
+   if ( bottomMostIndex == NSUIntegerMax ) {
+      bottomMost = _firstTouch;
+   }
+   
+   // Figure out the approx middle of the circle
+   _center = CGPointMake(leftMost.x + (rightMost.x - leftMost.x) / 2.0, bottomMost.y + (topMost.y - bottomMost.y) / 2.0);
+   
+   // check if the centre point is the centre of the speaker array if it's not then no circle and return no circle
+   if ((_center.x > controlArea.center.x + 100) ||  (_center.x < controlArea.center.x - 100) || (_center.y > controlArea.center.y + 100) ||  (_center.y < controlArea.center.y - 100)) {
+      return NO;
+   }
+   
+   
+   // Calculate the radius by looking at the first point and the center
+   _radius = fabsf(distanceBetweenPoints(_center, _firstTouch));
+   
+   CGFloat currentAngle = 0.0;
+   BOOL    hasSwitched = NO;
+   
+   // Start Circle Check=========================================================
+   // Make sure all points on circle are within a certain percentage of the radius from the center
+   // Make sure that the angle switches direction only once. As we go around the circle,
+   //    the angle between the line from the start point to the end point and the line from  the
+   //    current point and the end point should go from 0 up to about 180.0, and then come
+   //    back down to 0 (the function returns the smaller of the angles formed by the lines, so
+   //    180° is the highest it will return, 0 the lowest. If it switches direction more than once,
+   //    then it's not a circle
+   CGFloat minRadius = _radius - (_radius * _radiusVariancePercent);
+   CGFloat maxRadius = _radius + (_radius * _radiusVariancePercent);
+   
+   index = 0;
+   for ( NSString *onePointString in points ) {
+      CGPoint onePoint = CGPointFromString(onePointString);
+      CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(_center, onePoint));
+      if ( distanceFromRadius < minRadius || distanceFromRadius > maxRadius ) {
+         return NO;
+      }
+      
+      CGFloat pointAngle = angleBetweenLines(_firstTouch, _center, onePoint, _center);
+      
+      if ( (pointAngle > currentAngle && hasSwitched) && (index < [points count] - _overlapTolerance) ) {
+         return NO;      }
+      
+      if ( pointAngle < currentAngle ) {
+         if ( !hasSwitched )
+            hasSwitched = YES;
+      }
+      
+      currentAngle = pointAngle;
+      index++;
+   }
+   NSLog(@"ENDED");
+   return YES;
+}
+
 
 @end
 

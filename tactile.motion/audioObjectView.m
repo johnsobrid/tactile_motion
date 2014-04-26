@@ -42,6 +42,16 @@
       // at this point we also need to send some type of message out as the position changes
        [self setMyCenter:self.center];
    }
+   if (pan.state == UIGestureRecognizerStateBegan)
+   {
+      [self setStartPoint:self.center];
+   }
+   if(pan.state == UIGestureRecognizerStateEnded)
+   {
+       _endPoint = self.center;
+      [self setEndPoint:self.center];
+      //here we need to also find a way to make this reset
+   }
 }
 
 
