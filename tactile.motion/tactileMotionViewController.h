@@ -29,6 +29,7 @@
    CGPoint _firstTouch;
    NSTimeInterval _firstTouchTime;
    BOOL circleDetected;
+   
 
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;

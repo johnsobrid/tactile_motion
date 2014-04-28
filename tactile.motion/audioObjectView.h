@@ -19,6 +19,9 @@
 @property CGPoint startPoint;
 @property CGPoint endPoint;
 
+@property CGPoint dragVelocity;
+
 -(void) dragging:(UIPanGestureRecognizer *)drag;
+-(void) doubleTapOccured:(UITapGestureRecognizer *)doubleTap;
 
 @end

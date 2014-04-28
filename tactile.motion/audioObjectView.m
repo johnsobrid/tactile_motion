@@ -40,6 +40,8 @@
       self.center = centre;
       [pan setTranslation:CGPointZero inView:self];
       // at this point we also need to send some type of message out as the position changes
+      _dragVelocity = [pan velocityInView:self];
+    
        [self setMyCenter:self.center];
    }
    if (pan.state == UIGestureRecognizerStateBegan)
@@ -50,8 +52,15 @@
    {
        _endPoint = self.center;
       [self setEndPoint:self.center];
+        NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
       //here we need to also find a way to make this reset
    }
+}
+-(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
+{
+   doubleTap.numberOfTapsRequired = 2;
+   //put something in here that stops the spin motion
+   NSLog(@"doubleTap");
 }
 
 

@@ -13,10 +13,6 @@
 
 #define kNumAudioObjects 8
 
-//circle stuff
-
-
-
 @interface tactileMotionViewController ()
 
 
@@ -39,11 +35,13 @@
    {
       //	by default, the osc manager's delegate will be told when osc messages are received
       [manager setDelegate:self];
+      
+      //use these settings to adjust the circle recogniser
       _circleClosureAngleVariance = 45.0;
-      _circleClosureDistanceVariance = 200.0;
-      _maximumCircleTime = 3.0;
-      _radiusVariancePercent = 25.0;
-      _overlapTolerance = 3;
+      _circleClosureDistanceVariance = 400.0;
+      _maximumCircleTime = 6.0;
+      _radiusVariancePercent = 80.0;
+      _overlapTolerance = 6;
       _minimumNumPoints = 6;
       points = [[NSMutableArray alloc] init];
       _firstTouch = CGPointZero;
@@ -51,6 +49,7 @@
       _center = CGPointZero;
       _radius = 0.0;
    }
+   
    return self;
 }
 
@@ -91,6 +90,7 @@
                                                                     colour: [self objectColour:i]
                                                                      label:[NSString stringWithFormat:@"%i",i]];
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
+      [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
@@ -133,7 +133,9 @@
         {
            theta = theta + (M_PI *2);
         }
-//[self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+       //this prints the data to the screen, we probably don't need it any more
+       //[self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+       
        [self oscSend:[NSString stringWithFormat:@"%@/%.2f/%.2f", label, d,theta]]; // should we do this here or from the objects view?
     }
    else if ([keyPath isEqual:@"startPoint"]) {
@@ -215,20 +217,6 @@
 -(BOOL)check:(CGPoint)endPoint
 {
    NSLog(@"checkingTheCircle");
-   // Didn't finish close enough to starting point
-   if ( distanceBetweenPoints(_firstTouch, endPoint) > _circleClosureDistanceVariance ) {
-      return NO;
-   }
-   
-   // Took too long to draw
-   if ( [NSDate timeIntervalSinceReferenceDate] - _firstTouchTime > _maximumCircleTime ) {
-      return NO;
-   }
-   
-   // Not enough points
-   if ( [points count] < _minimumNumPoints ) {
-     return NO;
-   }
    
    CGPoint leftMost = _firstTouch;
    NSUInteger leftMostIndex = NSUIntegerMax;
@@ -281,6 +269,8 @@
    
    // check if the centre point is the centre of the speaker array if it's not then no circle and return no circle
    if ((_center.x > controlArea.center.x + 100) ||  (_center.x < controlArea.center.x - 100) || (_center.y > controlArea.center.y + 100) ||  (_center.y < controlArea.center.y - 100)) {
+      NSLog([NSString stringWithFormat:@"CircleCentre %f %f", _center.x, _center.y]);
+       NSLog([NSString stringWithFormat:@"MainCentre %f %f", controlArea.center.x, controlArea.center.y]);
       return NO;
    }
    
@@ -327,6 +317,12 @@
    return YES;
 }
 
+-(void)moveTheCircle
+{
+   //we will need to get the velocity from a the pan gesture in the audioObjectView as some point
+   
+   
+}
 
 @end
 
