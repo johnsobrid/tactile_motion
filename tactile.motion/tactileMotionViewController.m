@@ -139,7 +139,7 @@
        //this prints the data to the screen, we probably don't need it any more
      //  [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
        
-       [self oscSend:[NSString stringWithFormat:@" %@ ", label] withD:d withTheta:theta];
+       [self oscSend:[NSString stringWithFormat:@"object%@", label] withD:d withTheta:theta];
     }
    else if ([keyPath isEqual:@"startPoint"]) {
        [self firstTouch:theAudioObjectView.startPoint];

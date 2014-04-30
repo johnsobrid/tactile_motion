@@ -76,6 +76,7 @@
       float velocity = -0.01;
       //get the angle in polar
       _currentAngle = [self getObjectAngle:self.center];
+      NSLog([NSString stringWithFormat:@" %f",_currentAngle]);
       
       //increase the theta by how ever much is needed
       _currentAngle += velocity;
@@ -85,7 +86,7 @@
              _currentAngle = 0.0;
           }
       if (_currentAngle < 0.00) {
-         _currentAngle = (M_PI *2-0.01);
+         _currentAngle = ((M_PI *2)-0.01);
       }
    //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
       
@@ -123,7 +124,6 @@
    float x = position.x - 384.0;
    float y = -(position.y - 512);
    
-   
    float distance = sqrtf(x * x + y * y);
    
    return distance;
@@ -135,7 +135,7 @@
    
    //hard coding is bad -- fix it
    
-   if (x >= 0 && y >= 0)
+   if(x >= 0 && y >= 0)
    {
       x = (384.0 + x);
    }
@@ -149,7 +149,7 @@
       x = (384.0 - abs(x));
    }
    
-   return (float)x;
+   return x;
 
 }
 -(float)getYpos:(float)angle fromD:(float)d
@@ -173,7 +173,7 @@
       y = 512  - y;
    }
    
-   return (float)y;
+   return y;
 
 }
 @synthesize myCenter;
