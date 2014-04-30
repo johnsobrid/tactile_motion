@@ -22,10 +22,11 @@
 
 
 - (IBAction)playPressed:(id)sender {
-   [self oscSend:[NSString stringWithFormat:@"/play/1"]];
+   [self oscSendState:@"/play" withState:1];
 }
 - (IBAction)stopPressed:(id)sender {
-   [self oscSend:[NSString stringWithFormat:@"/play/0"]];
+   [self oscSendState:@"/play" withState:0];
+
 }
 
 
@@ -91,7 +92,7 @@
                                                                      label:[NSString stringWithFormat:@"%i",i]];
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
-      [NSTimer scheduledTimerWithTimeInterval:0.15 target:objectView selector:@selector(spin) userInfo:nil repeats:YES];
+      [NSTimer scheduledTimerWithTimeInterval:0.03 target:objectView selector:@selector(spin) userInfo:nil repeats:YES];
 
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
@@ -136,9 +137,9 @@
            theta = theta + (M_PI *2);
         }
        //this prints the data to the screen, we probably don't need it any more
-       [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+     //  [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
        
-       [self oscSend:[NSString stringWithFormat:@"%@/%.2f/%.2f", label, d,theta]]; // should we do this here or from the objects view?
+       [self oscSend:[NSString stringWithFormat:@" %@ ", label] withD:d withTheta:theta];
     }
    else if ([keyPath isEqual:@"startPoint"]) {
        [self firstTouch:theAudioObjectView.startPoint];
@@ -172,14 +173,22 @@
     [statusField setText:status];
 }
 
--(void)oscSend:(NSString *)messageString
+-(void)oscSend:(NSString *)messageString withD:(float)d withTheta:(float)theta
 {
    //send the position over OSC
    
    OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
-   
+   [newMessage addFloat:d];
+   [newMessage addFloat:theta];
    [outPort sendThisMessage:newMessage];
-
+}
+-(void)oscSendState:(NSString *)messageString withState:(int)state
+{
+   //send the position over OSC
+   
+   OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
+   [newMessage addInt:state];
+   [outPort sendThisMessage:newMessage];
 }
 
 //circle stuff

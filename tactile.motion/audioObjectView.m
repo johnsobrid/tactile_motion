@@ -34,10 +34,6 @@
 {
    if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged) {
       
-      //just checking my conversions
-      _currentAngle = [self getObjectAngle:self.center];
-      _currentD = [self getObjectD:self.center];
-      
       CGPoint delta = [pan translationInView:self];
       CGPoint centre = self.center;
       centre.x += delta.x;
@@ -46,6 +42,8 @@
       [pan setTranslation:CGPointZero inView:self];
       // at this point we also need to send some type of message out as the position changes
       _dragVelocity = [pan velocityInView:self];
+      _currentD = [self getObjectD:self.center];
+
     
        [self setMyCenter:self.center];
    }
@@ -75,16 +73,19 @@
    
    if (_motion == YES) {
       CGPoint newPoint;
-      float velocity = -0.03;
+      float velocity = -0.01;
       //get the angle in polar
       _currentAngle = [self getObjectAngle:self.center];
-      _currentD = [self getObjectD:self.center];
       
       //increase the theta by how ever much is needed
       _currentAngle += velocity;
       
-      if (_currentAngle > (M_PI *2) || (_currentAngle < 0.00)) {
-         _currentAngle = 0.01;
+      if (_currentAngle > (M_PI *2))
+          {
+             _currentAngle = 0.0;
+          }
+      if (_currentAngle < 0.00) {
+         _currentAngle = (M_PI *2-0.01);
       }
    //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
       
@@ -110,15 +111,6 @@
    float y = -(position.y - 512);
    // Take care not to divide by zero!
    
-   if (y == 0) {
-      if (x > 0) {
-         return M_PI_2;
-      }
-      else {
-         return 3 * M_PI_2;
-      }
-   }
-   
   float theta = atan2f(y,x);
    if (theta < 0.0)
    {
@@ -129,20 +121,21 @@
 -(float)getObjectD:(CGPoint)position
 {
    float x = position.x - 384.0;
-   float y = position.y - 512;
-
+   float y = -(position.y - 512);
+   
+   
    float distance = sqrtf(x * x + y * y);
    
    return distance;
 }
 -(float)getXpos:(float)angle fromD:(float)d
 {
-    int x = d * cos(angle);
-    int y = d * sin(angle);
+    float x = d * cos(angle);
+    float y = d * sin(angle);
    
    //hard coding is bad -- fix it
    
-   if (x > 0 && y > 0)
+   if (x >= 0 && y >= 0)
    {
       x = (384.0 + x);
    }
@@ -161,12 +154,12 @@
 }
 -(float)getYpos:(float)angle fromD:(float)d
 {
-   int y = d * sin(angle);
-   int x = d * cos(angle);
+   float y = d * sin(angle);
+   float x = d * cos(angle);
  
    //hard coding is bad -- fix it
-   
-   if (x > 0 && y > 0)
+
+   if (x >= 0 && y >= 0)
    {
       y = 512 - y;
    }
