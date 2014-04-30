@@ -91,6 +91,8 @@
                                                                      label:[NSString stringWithFormat:@"%i",i]];
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
+      [NSTimer scheduledTimerWithTimeInterval:0.15 target:objectView selector:@selector(spin) userInfo:nil repeats:YES];
+
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
@@ -114,18 +116,18 @@
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
+   audioObjectView *theAudioObjectView = object;
     
     if ([keyPath isEqual:@"myCenter"]) {
-        audioObjectView *theAudioObjectView = object;
         NSString *label = [theAudioObjectView label];
         CGPoint loc = theAudioObjectView.myCenter;
        [self updateCircle:loc];
-
+       
         // get center of control area view
         CGPoint cavcenter = controlArea.center;
-       
-        loc.x -= cavcenter.x;
+       loc.x -= cavcenter.x;
         loc.y -= cavcenter.y;
+       
         float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
         d = d/(controlArea.bounds.size.width/2)*MAX_DISTANCE;
         float theta = atan2f(loc.y,loc.x);
@@ -134,18 +136,20 @@
            theta = theta + (M_PI *2);
         }
        //this prints the data to the screen, we probably don't need it any more
-       //[self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
+       [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
        
        [self oscSend:[NSString stringWithFormat:@"%@/%.2f/%.2f", label, d,theta]]; // should we do this here or from the objects view?
     }
    else if ([keyPath isEqual:@"startPoint"]) {
-       audioObjectView *theAudioObjectView = object;
        [self firstTouch:theAudioObjectView.startPoint];
       
    }
    else if ([keyPath isEqual:@"endPoint"]) {
-      audioObjectView *theAudioObjectView = object;
-      [self lastTouch:theAudioObjectView.endPoint];
+      circleDetected = [self lastTouch:theAudioObjectView.endPoint];
+        NSLog(circleDetected ? @"YES" : @"NO");
+      if (circleDetected) {
+         //then start the timer that calls the spin function
+      }
    }
 }
 
@@ -206,17 +210,17 @@
    CGPoint startPoint = position;
    [points addObject:NSStringFromCGPoint(startPoint)];
 }
--(void)lastTouch:(CGPoint)position
+-(BOOL)lastTouch:(CGPoint)position
 {
    CGPoint endPoint = position;
    [points addObject:NSStringFromCGPoint(endPoint)];
    circleDetected = [self check:endPoint];
-   NSLog(circleDetected ? @"YES" : @"NO");
-   [self circleReset];
+   return circleDetected;
 }
+
 -(BOOL)check:(CGPoint)endPoint
 {
-   NSLog(@"checkingTheCircle");
+  // NSLog(@"checkingTheCircle");
    
    CGPoint leftMost = _firstTouch;
    NSUInteger leftMostIndex = NSUIntegerMax;
@@ -269,8 +273,8 @@
    
    // check if the centre point is the centre of the speaker array if it's not then no circle and return no circle
    if ((_center.x > controlArea.center.x + 100) ||  (_center.x < controlArea.center.x - 100) || (_center.y > controlArea.center.y + 100) ||  (_center.y < controlArea.center.y - 100)) {
-      NSLog([NSString stringWithFormat:@"CircleCentre %f %f", _center.x, _center.y]);
-       NSLog([NSString stringWithFormat:@"MainCentre %f %f", controlArea.center.x, controlArea.center.y]);
+     // NSLog([NSString stringWithFormat:@"CircleCentre %f %f", _center.x, _center.y]);
+     //  NSLog([NSString stringWithFormat:@"MainCentre %f %f", controlArea.center.x, controlArea.center.y]);
       return NO;
    }
    
@@ -317,12 +321,6 @@
    return YES;
 }
 
--(void)moveTheCircle
-{
-   //we will need to get the velocity from a the pan gesture in the audioObjectView as some point
-   
-   
-}
 
 @end
 

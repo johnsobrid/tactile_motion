@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "controlAreaView.h"
 
 @interface audioObjectView : UIView
 - (id)initWithFrame:(CGRect)frame
@@ -20,8 +21,14 @@
 @property CGPoint endPoint;
 
 @property CGPoint dragVelocity;
-
+@property BOOL motion;
 -(void) dragging:(UIPanGestureRecognizer *)drag;
 -(void) doubleTapOccured:(UITapGestureRecognizer *)doubleTap;
+-(void) spin;
+
+
+@property CGFloat currentAngle;
+@property CGFloat currentD;
+
 
 @end

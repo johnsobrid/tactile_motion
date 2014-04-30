@@ -82,6 +82,7 @@
    [self drawSpeakerRect:CGPointMake(0.0, 0.0)];
    //return scheme
     CGContextRestoreGState(context);
+   
 }
 
 -(void)drawSpeakerRect:(CGPoint)rectPos

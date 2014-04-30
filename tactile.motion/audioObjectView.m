@@ -33,6 +33,11 @@
 -(void) dragging:(UIPanGestureRecognizer *)pan
 {
    if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged) {
+      
+      //just checking my conversions
+      _currentAngle = [self getObjectAngle:self.center];
+      _currentD = [self getObjectD:self.center];
+      
       CGPoint delta = [pan translationInView:self];
       CGPoint centre = self.center;
       centre.x += delta.x;
@@ -52,23 +57,131 @@
    {
        _endPoint = self.center;
       [self setEndPoint:self.center];
-        NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
+    //    NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
       //here we need to also find a way to make this reset
    }
 }
 -(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
 {
-   doubleTap.numberOfTapsRequired = 2;
-   //put something in here that stops the spin motion
-   NSLog(@"doubleTap");
+      doubleTap.numberOfTapsRequired = 2;
+      //put something in here that stops the spin motion
+      NSLog(@"doubleTap");
+      _motion = YES;
 }
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-/*- (void)drawRect:(CGRect)rect
+-(void)spin
 {
+   // float radialChange = 0.1; //this should be the velocity
+   
+   if (_motion == YES) {
+      CGPoint newPoint;
+      float velocity = -0.03;
+      //get the angle in polar
+      _currentAngle = [self getObjectAngle:self.center];
+      _currentD = [self getObjectD:self.center];
+      
+      //increase the theta by how ever much is needed
+      _currentAngle += velocity;
+      
+      if (_currentAngle > (M_PI *2) || (_currentAngle < 0.00)) {
+         _currentAngle = 0.01;
+      }
+   //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
+      
+      // then convert that data back to cartesian co-ords
+      newPoint.x = [self getXpos:_currentAngle fromD:_currentD];
+      newPoint.y = [self getYpos:_currentAngle fromD:_currentD];
+      
+      // and translate the view to the position and update my centre
+      self.center = newPoint;
+      
+      [self setMyCenter:self.center];
+      [self setNeedsDisplay];
+   }
+}
+
+- (float)getObjectAngle:(CGPoint)position {
+   // Translate into cartesian space with origin at the center of a 320-pixel square
+  // CGPoint cavcenter = controlArea.center;
+
+   //these values are hard coded but they should be the centre of the control area view
+   
+   float x = position.x - 384.0;
+   float y = -(position.y - 512);
+   // Take care not to divide by zero!
+   
+   if (y == 0) {
+      if (x > 0) {
+         return M_PI_2;
+      }
+      else {
+         return 3 * M_PI_2;
+      }
+   }
+   
+  float theta = atan2f(y,x);
+   if (theta < 0.0)
+   {
+    theta = theta + (M_PI *2);
+   }
+   return theta;
+}
+-(float)getObjectD:(CGPoint)position
+{
+   float x = position.x - 384.0;
+   float y = position.y - 512;
+
+   float distance = sqrtf(x * x + y * y);
+   
+   return distance;
+}
+-(float)getXpos:(float)angle fromD:(float)d
+{
+    int x = d * cos(angle);
+    int y = d * sin(angle);
+   
+   //hard coding is bad -- fix it
+   
+   if (x > 0 && y > 0)
+   {
+      x = (384.0 + x);
+   }
+   else if(x > 0 && y < 0) {
+      x = (384.0 + x);
+   }
+   else if(x < 0 && y < 0) {
+      x = (384.0- abs(x));
+   }
+   else if(x < 0 && y > 0) {
+      x = (384.0 - abs(x));
+   }
+   
+   return (float)x;
+
+}
+-(float)getYpos:(float)angle fromD:(float)d
+{
+   int y = d * sin(angle);
+   int x = d * cos(angle);
  
-}*/
+   //hard coding is bad -- fix it
+   
+   if (x > 0 && y > 0)
+   {
+      y = 512 - y;
+   }
+   else if(x > 0 && y < 0) {
+      y = 512 + abs(y);
+   }
+   else if(x < 0 && y < 0) {
+      y = 512  + abs(y);
+   }
+   else if(x < 0 && y > 0) {
+      y = 512  - y;
+   }
+   
+   return (float)y;
+
+}
 @synthesize myCenter;
 @end
