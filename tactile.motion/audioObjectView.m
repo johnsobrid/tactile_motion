@@ -18,14 +18,6 @@ enum {
 
 @implementation audioObjectView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-       
-          }
-    return self;
-}
 
 - (id)initWithFrame:(CGRect)frame
              colour:(UIColor*)col
@@ -79,8 +71,8 @@ enum {
 
 -(void)updateFrame
 {
-   _x = self.center.x - 384.0;
-   _y = 512 - self.center.y;
+   _x = self.center.x - _cavWidth;
+   _y = _cavHeight - self.center.y;
    _d = sqrtf(_x * _x + _y * _y);
    _theta = atan2f(_y,_x);
 }
@@ -185,7 +177,7 @@ enum {
 
 -(void)updatePosition
 {
-   self.center = CGPointMake(_x + 384.0, 512 -_y );
+   self.center = CGPointMake(_x + _cavWidth, _cavHeight -_y );
    [self setNeedsDisplay];
 }
    

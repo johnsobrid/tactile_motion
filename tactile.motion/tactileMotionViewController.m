@@ -82,7 +82,8 @@
                                                                      label:[NSString stringWithFormat:@"%i",i]];
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
-
+      [objectView setCavWidth:controlArea.center.x];
+      [objectView setCavHeight:controlArea.center.y];
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
@@ -143,14 +144,11 @@
          [theAudioObjectView beginSpinWithAngularVelocity:M_PI/2];
       }
          vertDragDetected = [self checkDragVert:theAudioObjectView.endPoint];
-      NSLog(vertDragDetected ? @"vertYes" : @"vertNO");
          if (vertDragDetected)
          {
             [theAudioObjectView beginVertDrag:100];
          }
          horoDragDetected = [self checkDragHoro:theAudioObjectView.endPoint];
-      NSLog(horoDragDetected ? @"vertYes" : @"vertNO");
-
          if (horoDragDetected)
          {
             [theAudioObjectView beginHoroDrag:100];
@@ -345,7 +343,6 @@
       currentAngle = pointAngle;
       index++;
    }
-   NSLog(@"ENDED");
    return YES;
 }
 

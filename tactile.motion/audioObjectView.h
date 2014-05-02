@@ -22,6 +22,8 @@
 
 @property int animator;
 @property float angularVelocity;
+@property int cavWidth;
+@property int  cavHeight;
 
 @property CGPoint dragVelocity;
 
