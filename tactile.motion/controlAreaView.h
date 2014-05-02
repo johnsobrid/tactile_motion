@@ -13,5 +13,7 @@
 #define NUM_OF_SPEAKERS 8
 
 @interface controlAreaView : UIView
+@property int maxDistance;
+@property int kNumofSpeakers;
 
 @end

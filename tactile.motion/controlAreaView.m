@@ -20,7 +20,7 @@
 }
 
 -(CGFloat)euroOffset { return ([self speakerDivision]/2);}
--(CGFloat)speakerDivision { return M_PI/(NUM_OF_SPEAKERS/2);}
+-(CGFloat)speakerDivision { return M_PI/(_kNumofSpeakers/2);}
 
 
 // Only override drawRect: if you perform custom drawing.
@@ -35,12 +35,12 @@
 
 -(void)drawCircle
 {
-   float origIncr = self.bounds.size.width / (2*MAX_DISTANCE);
+   float origIncr = self.bounds.size.width / (2*_maxDistance);
    float orig = 0.0;
    float widthHeight = self.bounds.size.width;
    float widthHeightIncr = -2*origIncr;
    
-   for (int i = 0; i < MAX_DISTANCE; i++,orig+=origIncr,widthHeight += widthHeightIncr) {
+   for (int i = 0; i < _maxDistance; i++,orig+=origIncr,widthHeight += widthHeightIncr) {
       CGRect circleRect = CGRectMake(orig, orig, widthHeight, widthHeight);
       UIBezierPath *circle = [UIBezierPath bezierPathWithOvalInRect:circleRect];
       [[UIColor lightGrayColor] setStroke];
@@ -56,7 +56,7 @@
 {
    CGContextRef context = UIGraphicsGetCurrentContext();
    // save the cordinate scheme
-   for (int i = 0; i < NUM_OF_SPEAKERS; i++) {
+   for (int i = 0; i < _kNumofSpeakers; i++) {
       CGContextSaveGState(context);
       // translate it to the centre of the listening space
       CGContextTranslateCTM(context, self.bounds.size.width/2, self.bounds.size.width/2);

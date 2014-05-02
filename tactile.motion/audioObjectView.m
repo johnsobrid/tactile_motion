@@ -133,12 +133,14 @@ enum {
 {
    float newY;
    //hard coding is bad -- the area limit should be the edge of the control area
+   
    if (_endPoint.y < _startPoint.y) {
         newY = _y + _angularVelocity * dt;
    } else
    {
       newY = _y - _angularVelocity * dt;
    }
+   
       //if you are less than the old x you are going towards the left therefore take away from value
    [self setY:newY];
 }

@@ -39,6 +39,12 @@
                         change:(NSDictionary *)change
                        context:(void *)context;
 @property (strong) NSMutableArray *audioObjects;
+
+@property int numOfSpeakers;
+@property int maxDistance;
+@property int numOfObjects;
+
+//OSC
 @property (strong, nonatomic) NSString *AddressInUse;
 @property (strong,nonatomic) NSString *portInUse;
 

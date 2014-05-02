@@ -9,13 +9,9 @@
 #import "tactileMotionViewController.h"
 #import "audioObjectView.h"
 
-
-
-#define kNumAudioObjects 8
 #define kAnimationInterval 0.1
 
 @interface tactileMotionViewController ()
-
 
 @end
 
@@ -49,6 +45,8 @@
    _center = CGPointZero;
    _radius = 0.0;
    animationTimer = [NSTimer scheduledTimerWithTimeInterval:kAnimationInterval target:self selector:@selector(animateAudioObjects:) userInfo:nil repeats:YES];
+   controlArea.maxDistance = _maxDistance;
+   controlArea.kNumofSpeakers = _numOfSpeakers;
    
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -69,13 +67,13 @@
    CGRect bounds = [[self view] bounds];
    
    float boxWidth = 76;
-   float gapWidth = (bounds.size.width - (boxWidth * kNumAudioObjects)) / (kNumAudioObjects + 1);
+   float gapWidth = (bounds.size.width - (boxWidth * _numOfObjects)) / (_numOfObjects + 1);
    float x = gapWidth;
-   float y = bounds.size.height - gapWidth - boxWidth;
+   float y = bounds.size.height - (boxWidth*1.25);
    
    float xIncr = boxWidth + gapWidth;
    
-   for (int i=0;i< kNumAudioObjects;i++,x+=xIncr) {
+   for (int i=0;i< _numOfObjects;i++,x+=xIncr) {
       CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
                                                                     colour: [self objectColour:i]
@@ -120,7 +118,7 @@
       loc.y -= cavcenter.y;
       
       float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
-      d = d/(controlArea.bounds.size.width/2)*MAX_DISTANCE;
+      d = d/(controlArea.bounds.size.width/2)*_maxDistance;
       float theta = atan2f(loc.y,loc.x);
       if (theta < 0.0)
       {

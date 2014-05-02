@@ -199,6 +199,9 @@ int saveSpeakers;
          tactileMotionViewController *tmvc = segue.destinationViewController;
          tmvc.AddressInUse = [ipField text];
          tmvc.portInUse =[portField text];
+         tmvc.numOfObjects = (int)[self.objectLabelOutlet value];
+         tmvc.numOfSpeakers = (int)[self.speakersLabelOutlet value];
+         tmvc.maxDistance = (int)[self.distanceLabelOutlet value];
       }
    }
 }
