@@ -243,6 +243,8 @@
 {
   // NSLog(@"checkingTheCircle");
    [points addObject:NSStringFromCGPoint(endPoint)];
+   if ([points count] < 60) return NO;
+
    
    CGPoint leftMost = _firstTouch;
    NSUInteger leftMostIndex = NSUIntegerMax;
@@ -351,7 +353,9 @@
 {
    [points addObject:NSStringFromCGPoint(endPoint)];
    CGPoint checker = endPoint;
-   float varianceAlowed = 80;
+   float varianceAlowed = 50;
+   if ([points count] < 20) return NO;
+
    
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
@@ -366,7 +370,8 @@
 {
    [points addObject:NSStringFromCGPoint(endPoint)];
    CGPoint checker = endPoint;
-   float varianceAlowed = 80;
+   float varianceAlowed = 50;
+   if ([points count] < 20) return NO;
    
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
