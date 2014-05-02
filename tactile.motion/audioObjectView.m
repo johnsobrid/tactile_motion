@@ -131,17 +131,27 @@ enum {
 
 -(void)vertDragWithDT:(float)dt
 {
+   float newY;
    //hard coding is bad -- the area limit should be the edge of the control area
-   float newY = _y + _angularVelocity * dt;
-   if (newY < _y) {
-      newY -= ((_angularVelocity *dt)*2);
+   if (_endPoint.y < _startPoint.y) {
+        newY = _y + _angularVelocity * dt;
+   } else
+   {
+      newY = _y - _angularVelocity * dt;
    }
-   //if you are less than the old x you are going towards the left therefore take away from value
+      //if you are less than the old x you are going towards the left therefore take away from value
    [self setY:newY];
 }
 -(void)horoDragWithDT:(float)dt
 {
-   float newX = _x +_angularVelocity * dt;
+   float newX;
+   if (_endPoint.x > _startPoint.x) {
+      //you are going right so add to the value
+       newX = _x +_angularVelocity * dt;
+   } else
+   {
+      newX = _x -_angularVelocity * dt;
+   }
    //if you are less than the old x you are going towards the left therefore take away from value
    [self setX:newX];
 }
@@ -180,6 +190,5 @@ enum {
    self.center = CGPointMake(_x + _cavWidth, _cavHeight -_y );
    [self setNeedsDisplay];
 }
-   
-// @synthesize myCenter;
+
 @end
