@@ -29,8 +29,9 @@
    CGPoint _firstTouch;
    NSTimeInterval _firstTouchTime;
    BOOL circleDetected;
-   
-
+   BOOL vertDragDetected;
+   BOOL horoDragDetected;
+   NSTimer *animationTimer;
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -40,6 +41,7 @@
 @property (strong) NSMutableArray *audioObjects;
 @property (strong, nonatomic) NSString *AddressInUse;
 @property (strong,nonatomic) NSString *portInUse;
+
 
 //circleChecks
 @property CGFloat circleClosureAngleVariance;

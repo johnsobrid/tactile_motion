@@ -20,15 +20,22 @@
 @property CGPoint startPoint;
 @property CGPoint endPoint;
 
+@property int animator;
+@property float angularVelocity;
+
 @property CGPoint dragVelocity;
+
+@property (nonatomic) float theta, d, x, y;
+
 @property BOOL motion;
 -(void) dragging:(UIPanGestureRecognizer *)drag;
 -(void) doubleTapOccured:(UITapGestureRecognizer *)doubleTap;
--(void) spin;
+-(void)animateWithDT:(float)dt;
+-(void) beginSpinWithAngularVelocity:(float)f;
+-(void) beginVertDrag:(float)f;
+-(void)beginHoroDrag:(float)f;
 
 
-@property CGFloat currentAngle;
-@property CGFloat currentD;
 
 
 @end
