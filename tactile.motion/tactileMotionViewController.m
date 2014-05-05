@@ -323,6 +323,8 @@
    CGFloat maxRadius = _radius + (_radius * _radiusVariancePercent);
    
    index = 0;
+    CGPoint lastpoint;
+    float totaldistance = 0.0;
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
       CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(_center, onePoint));
@@ -342,10 +344,15 @@
          if ( !hasSwitched )
             hasSwitched = YES;
       }
-      
+       
+       totaldistance += distanceBetweenPoints(lastpoint, onePoint);
+       lastpoint = onePoint;
+
       currentAngle = pointAngle;
       index++;
    }
+    _velocity = points.count /totaldistance / _radius;
+    NSLog(@"%f",_velocity);
    return YES;
 }
 
