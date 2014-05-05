@@ -9,7 +9,7 @@
 #import "tactileMotionViewController.h"
 #import "audioObjectView.h"
 
-#define kAnimationInterval 0.1
+#define kAnimationInterval 0.02
 
 @interface tactileMotionViewController ()
 

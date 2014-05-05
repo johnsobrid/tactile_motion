@@ -233,7 +233,7 @@ enum {
     //Draw an ellipse
     CGContextFillEllipseInRect(myContext, CGRectMake(0, 0, width, height));
     //OR draw a rectangle
-    //CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
+   // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
     
     
     
