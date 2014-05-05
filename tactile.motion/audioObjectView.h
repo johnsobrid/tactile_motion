@@ -10,6 +10,9 @@
 #import "controlAreaView.h"
 
 @interface audioObjectView : UIView
+
+@property CGRect ObjectFrame;
+
 - (id)initWithFrame:(CGRect)frame
              colour:(UIColor*)col
               label:(NSString*)str;
@@ -36,6 +39,7 @@
 -(void) beginSpinWithAngularVelocity:(float)f;
 -(void) beginVertDrag:(float)f;
 -(void)beginHoroDrag:(float)f;
+-(void)constrainDistance;
 
 
 

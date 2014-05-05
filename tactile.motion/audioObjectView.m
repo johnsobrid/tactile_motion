@@ -27,9 +27,19 @@ enum {
    if (self) {
       [self updateFrame];
       _animator = kNone;
-      [self setBackgroundColor:col];
+       //Removed this line to stop the colour being automatically set
+       //If you look at the drawRect function that's where this should be done anyway.
+       //[self setBackgroundColor:col];
+       
+       //Replaced with these lines instead:
+            //Set Background to transparent
+      [self setBackgroundColor:[UIColor clearColor]];
+       //Set variable colour to the intended colour
+       _colour = col;
+       
       [self setLabel:str];
    }
+    
    return self;
 }
 
@@ -57,7 +67,7 @@ enum {
    {
        _endPoint = self.center;
       [self setEndPoint:self.center];
-    //    NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
+      //NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
       //here we need to also find a way to make this reset
    }
 }
@@ -71,10 +81,12 @@ enum {
 
 -(void)updateFrame
 {
+    
    _x = self.center.x - _cavWidth;
    _y = _cavHeight - self.center.y;
    _d = sqrtf(_x * _x + _y * _y);
    _theta = atan2f(_y,_x);
+
 }
 
 -(void) beginSpinWithAngularVelocity:(float)f
@@ -142,6 +154,7 @@ enum {
    }
    
       //if you are less than the old x you are going towards the left therefore take away from value
+    [self constrainDistance];
    [self setY:newY];
 }
 -(void)horoDragWithDT:(float)dt
@@ -155,6 +168,8 @@ enum {
       newX = _x -_angularVelocity * dt;
    }
    //if you are less than the old x you are going towards the left therefore take away from value
+    
+    [self constrainDistance];
    [self setX:newX];
 }
 
@@ -192,5 +207,47 @@ enum {
    self.center = CGPointMake(_x + _cavWidth, _cavHeight -_y );
    [self setNeedsDisplay];
 }
+
+//This is where you draw the view's rectangle instead of just
+//setting the background colour, it allows you more customization
+//drawRect is inherited from UIView and will draw everytime
+//setNeedsDisplay is called.
+
+- (void)drawRect:(CGRect)theView{
+    
+    //Get width and height of the view
+    int width  = self.frame.size.width;
+    int height = self.frame.size.height;
+    //Get the CGContext to draw into
+    CGContextRef myContext = UIGraphicsGetCurrentContext();
+    //Save the current state
+    CGContextSaveGState(myContext);
+    //Move position to center in order to...
+    CGContextTranslateCTM(myContext, width/2, height/2);
+    //Rotate it about it's center with the rotation variable
+    CGContextRotateCTM(myContext, _theta);
+    //Move it back into position
+    CGContextTranslateCTM(myContext, -width/2, -height/2);
+    //Set the fill colour to the colour variable
+    CGContextSetFillColorWithColor(myContext, [_colour CGColor]);
+    //Draw an ellipse
+    CGContextFillEllipseInRect(myContext, CGRectMake(0, 0, width, height));
+    //OR draw a rectangle
+    //CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
+    
+    
+    
+}
+
+- (void)constrainDistance{
+    
+    //This is wrong, but is almost right.
+    
+    if (fabsf(_d) > _cavWidth){
+        _angularVelocity *= -1;
+        _d = _cavWidth;
+    }
+}
+
 
 @end
