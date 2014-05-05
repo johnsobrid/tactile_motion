@@ -84,10 +84,10 @@
     CGContextRestoreGState(context);
    
 }
-
+ // Timothy's speaker drawing 
 -(void)drawSpeakerRect:(CGPoint)rectPos
 {
-   UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x-SPEAKER_SIZE, rectPos.y-SPEAKER_SIZE, SPEAKER_SIZE, SPEAKER_SIZE)];
+   UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x-SPEAKER_SIZE, rectPos.y-SPEAKER_SIZE, SPEAKER_SIZE, SPEAKER_SIZE/2.0)];
    [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
    [speakerRect fill];
    [self drawSpeakerTri:rectPos];
@@ -95,9 +95,9 @@
 
 -(void)drawSpeakerTri:(CGPoint)rectPos
 {
-   CGPoint pointA = CGPointMake(rectPos.x-(SPEAKER_SIZE/2), rectPos.y);
-   CGPoint pointB = CGPointMake(rectPos.x - (SPEAKER_SIZE), rectPos.y + (SPEAKER_SIZE/2));
-   CGPoint pointC = CGPointMake(rectPos.x, rectPos.y + (SPEAKER_SIZE/2));
+   CGPoint pointA = CGPointMake(rectPos.x-(SPEAKER_SIZE/2), rectPos.y - (SPEAKER_SIZE));
+   CGPoint pointB = CGPointMake(rectPos.x - (1.5 * SPEAKER_SIZE), rectPos.y + (SPEAKER_SIZE/10));
+   CGPoint pointC = CGPointMake(rectPos.x + (0.5 * SPEAKER_SIZE), rectPos.y + (SPEAKER_SIZE/10));
    
    UIBezierPath   *trianglePath = [[UIBezierPath alloc]init];
    [trianglePath moveToPoint:pointA];
@@ -108,4 +108,30 @@
    [trianglePath fill];
   
 }
+/*              Old way of drawing speakers
+ 
+-(void)drawSpeakerRect:(CGPoint)rectPos
+{
+    UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x-SPEAKER_SIZE, rectPos.y-SPEAKER_SIZE, SPEAKER_SIZE, SPEAKER_SIZE)];
+    [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
+    [speakerRect fill];
+    [self drawSpeakerTri:rectPos];
+}
+
+-(void)drawSpeakerTri:(CGPoint)rectPos
+{
+    CGPoint pointA = CGPointMake(rectPos.x-(SPEAKER_SIZE/2), rectPos.y);
+    CGPoint pointB = CGPointMake(rectPos.x - (SPEAKER_SIZE), rectPos.y + (SPEAKER_SIZE/2));
+    CGPoint pointC = CGPointMake(rectPos.x, rectPos.y + (SPEAKER_SIZE/2));
+    
+    UIBezierPath *trianglePath = [[UIBezierPath alloc]init];
+    [trianglePath moveToPoint:pointA];
+    [trianglePath addLineToPoint:pointB];
+    [trianglePath addLineToPoint:pointC];
+    [trianglePath closePath];
+    [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
+    [trianglePath fill];
+    
+}
+ */
 @end
