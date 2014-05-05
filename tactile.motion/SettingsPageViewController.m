@@ -31,6 +31,11 @@ int saveSpeakers;
    manager = [[OSCManager alloc]init];
    [manager setDelegate:self];
    [self setupNetwork];
+    
+    //Maybe have some default values here that are explicitly set
+    //in the case that the settings haven't been saved yet?
+    //[self.speakersLabelOutlet s]
+    [self.speakersLabelOutlet setValue:8];
    
 }
 

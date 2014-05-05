@@ -143,6 +143,8 @@ enum {
 
 -(void)vertDragWithDT:(float)dt
 {
+    
+    
    float newY;
    //hard coding is bad -- the area limit should be the edge of the control area
    
@@ -154,11 +156,12 @@ enum {
    }
    
       //if you are less than the old x you are going towards the left therefore take away from value
-    [self constrainDistance];
+    newY = [self constrainDistance:newY];
    [self setY:newY];
 }
 -(void)horoDragWithDT:(float)dt
 {
+    
    float newX;
    if (_endPoint.x > _startPoint.x) {
       //you are going right so add to the value
@@ -169,7 +172,8 @@ enum {
    }
    //if you are less than the old x you are going towards the left therefore take away from value
     
-    [self constrainDistance];
+    newX = [self constrainDistance:newX];
+    
    [self setX:newX];
 }
 
@@ -238,15 +242,19 @@ enum {
     
     
 }
-
-- (void)constrainDistance{
-    
-    //This is wrong, but is almost right.
-    
-    if (fabsf(_d) > _cavWidth){
-        _angularVelocity *= -1;
-        _d = _cavWidth;
+//This part was tricky because it has to return a value to
+//make sure the newX and newY will be updated to make sure
+//the distance encoding is done correctly.
+- (float)constrainDistance:(float)value{
+    float w = self.frame.size.width/2;
+    if (fabsf(_d) > _cavWidth - w){
+        
+        _angularVelocity *= -1.0;
+        value = floorf(value);
+        value += (0.1 * _angularVelocity);
     }
+    
+    return value;
 }
 
 

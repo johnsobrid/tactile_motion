@@ -9,7 +9,7 @@
 #import "tactileMotionViewController.h"
 #import "audioObjectView.h"
 
-#define kAnimationInterval 0.1
+#define kAnimationInterval 0.02
 
 @interface tactileMotionViewController ()
 
@@ -46,7 +46,12 @@
    _radius = 0.0;
    animationTimer = [NSTimer scheduledTimerWithTimeInterval:kAnimationInterval target:self selector:@selector(animateAudioObjects:) userInfo:nil repeats:YES];
    controlArea.maxDistance = _maxDistance;
+    //This is bad coding, but it works regardless...
+    if (!_numOfSpeakers){
+        _numOfSpeakers = 8;
+    }
    controlArea.kNumofSpeakers = _numOfSpeakers;
+    
    
 }
 -(void)viewWillAppear:(BOOL)animated
