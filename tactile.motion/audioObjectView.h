@@ -41,7 +41,7 @@
 -(void)beginHoroDrag:(float)f;
 -(float)constrainDistance:(float)value;
 
-
+@property UILabel *objectNumber;
 
 
 @end

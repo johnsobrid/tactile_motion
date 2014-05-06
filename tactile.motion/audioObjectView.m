@@ -26,6 +26,7 @@ enum {
    self = [super initWithFrame:frame];
    if (self) {
       [self updateFrame];
+       _objectNumber = [[UILabel alloc]initWithFrame:self.frame];
       _animator = kNone;
        //Removed this line to stop the colour being automatically set
        //If you look at the drawRect function that's where this should be done anyway.
@@ -232,6 +233,10 @@ enum {
     CGContextFillEllipseInRect(myContext, CGRectMake(0, 0, width, height));
     //OR draw a rectangle
    // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
+   [self.objectNumber setTextColor:[UIColor whiteColor]];
+   [self.objectNumber setFont:[UIFont systemFontOfSize:26]];
+   [self.objectNumber setText:self.label];
+   [self addSubview:_objectNumber];
 }
 //This part was tricky because it has to return a value to
 //make sure the newX and newY will be updated to make sure
