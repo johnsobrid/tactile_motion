@@ -17,7 +17,6 @@
 
 @implementation tactileMotionViewController
 
-
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
 }
@@ -51,8 +50,6 @@
         _numOfSpeakers = 8;
     }
    controlArea.kNumofSpeakers = _numOfSpeakers;
-    
-   
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -307,7 +304,6 @@
       _center = CGPointMake(controlArea.center.x, controlArea.center.y);
    }
    
-   
    // Calculate the radius by looking at the first point and the center
    _radius = fabsf(distanceBetweenPoints(_center, _firstTouch));
    
@@ -331,6 +327,7 @@
      index = 0;
     CGPoint lastpoint;
     float totaldistance = 0.0;
+   
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
       CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(_center, onePoint));
@@ -356,8 +353,6 @@
 
       currentAngle = pointAngle;
       index++;
-   //   NSLog(@"%f", currentAngle);
-      
    }
    //figure out which direction the gesture is spinning in
    
@@ -373,14 +368,12 @@
    
    //work out the velocity
     _circleVelocity = points.count / totaldistance / _radius;
-   _circleVelocity *= direction;
-   _circleVelocity *= 5000;
-   float speedAllowance = 150;
+   float speedAllowance = 0.006;
    if (_circleVelocity > speedAllowance) {
       _circleVelocity = speedAllowance;
    }
-    NSLog(@"%f",_circleVelocity);
-   
+    _circleVelocity *= 3000;
+   _circleVelocity *= direction;
    return YES;
 }
 
@@ -405,6 +398,11 @@
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
     _verticalVelocity *= 50.0;
+   float speedLimit = 250.0;
+   if (_verticalVelocity > speedLimit)
+   {
+      _verticalVelocity = speedLimit;
+   }
    return YES;
 }
 -(BOOL)checkDragHoro:(CGPoint)endPoint
@@ -422,11 +420,15 @@
       if ( onePoint.y > checker.y + varianceAlowed  || onePoint.y < checker.y - varianceAlowed) {
          return NO;
       }
-       
    }
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.
     _horizontalVelocity *= 50.0;
+   float speedLimit = 250.0;
+   if (_verticalVelocity > speedLimit)
+   {
+      _verticalVelocity = speedLimit;
+   }
    return YES;
 }
 
