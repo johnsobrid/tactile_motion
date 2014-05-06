@@ -64,7 +64,7 @@
 @property (readonly) CGFloat radius;
 @property (readonly) NSArray *points;
 
-@property (nonatomic) float velocity;
+@property (nonatomic) float circleVelocity;
 
 
 @end

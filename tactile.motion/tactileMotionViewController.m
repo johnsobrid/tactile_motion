@@ -36,7 +36,7 @@
    _circleClosureAngleVariance = 45.0;
    _circleClosureDistanceVariance = 200.0;
    _maximumCircleTime = 3.0;
-   _radiusVariancePercent = 25.0;
+   _radiusVariancePercent = 80.0;
    _overlapTolerance = 3;
    _minimumNumPoints = 6;
    points = [[NSMutableArray alloc] init];
@@ -144,7 +144,7 @@
       circleDetected = [self checkCircle:theAudioObjectView.endPoint];
       if (circleDetected) {
          //then start the timer that calls the spin function
-         [theAudioObjectView beginSpinWithAngularVelocity:M_PI/2];
+         [theAudioObjectView beginSpinWithAngularVelocity:_circleVelocity];
       }
          vertDragDetected = [self checkDragVert:theAudioObjectView.endPoint];
          if (vertDragDetected)
@@ -244,7 +244,7 @@
 {
   // NSLog(@"checkingTheCircle");
    [points addObject:NSStringFromCGPoint(endPoint)];
-   if ([points count] < 60) return NO;
+   if ([points count] < 40) return NO;
 
    
    CGPoint leftMost = _firstTouch;
@@ -278,19 +278,22 @@
       }
       index++;
    }
-   
    // If startPoint is one of the extreme points, take set it
    if ( rightMostIndex == NSUIntegerMax ) {
       rightMost = _firstTouch;
+      rightMostIndex = 0;
    }
    if ( leftMostIndex == NSUIntegerMax ) {
       leftMost = _firstTouch;
+      leftMostIndex = 0;
    }
    if ( topMostIndex == NSUIntegerMax ) {
       topMost = _firstTouch;
+      topMostIndex = 0;
    }
    if ( bottomMostIndex == NSUIntegerMax ) {
       bottomMost = _firstTouch;
+      bottomMostIndex = 0;
    }
    
    // Figure out the approx middle of the circle
@@ -321,8 +324,11 @@
    //    then it's not a circle
    CGFloat minRadius = _radius - (_radius * _radiusVariancePercent);
    CGFloat maxRadius = _radius + (_radius * _radiusVariancePercent);
+   float direction = 0;
    
-   index = 0;
+   
+   //check what quadrant you are in
+     index = 0;
     CGPoint lastpoint;
     float totaldistance = 0.0;
    for ( NSString *onePointString in points ) {
@@ -350,9 +356,31 @@
 
       currentAngle = pointAngle;
       index++;
+   //   NSLog(@"%f", currentAngle);
+      
    }
-    _velocity = points.count /totaldistance / _radius;
-    NSLog(@"%f",_velocity);
+   //figure out which direction the gesture is spinning in
+   
+   
+   if (topMostIndex < leftMostIndex || bottomMostIndex > leftMostIndex) {
+      direction = -1;
+   }  if (topMostIndex > leftMostIndex || bottomMostIndex < leftMostIndex)
+   {
+      direction = 1;
+   }
+   
+   if (!direction) return NO;
+   
+   //work out the velocity
+    _circleVelocity = points.count /totaldistance / _radius;
+   _circleVelocity *= direction;
+   _circleVelocity *= 5000;
+   float speedAllowance = 150;
+   if (_circleVelocity > speedAllowance) {
+      _circleVelocity = speedAllowance;
+   }
+    NSLog(@"%f",_circleVelocity);
+   
    return YES;
 }
 
