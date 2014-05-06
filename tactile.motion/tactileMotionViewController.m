@@ -335,6 +335,8 @@
            NSLog(@"radiusError");
          return NO;
       }
+       
+       if(![self isPointInsideCircle:onePoint]) return NO;
       
       CGFloat pointAngle = angleBetweenLines(_firstTouch, _center, onePoint, _center);
       
@@ -385,9 +387,11 @@
    if ([points count] < 20) return NO;
     CGPoint lastpoint = _firstTouch;
     float totaldistance = 0;
-
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
+       
+       if(![self isPointInsideCircle:onePoint]) return NO;
+
        totaldistance += distanceBetweenPoints(lastpoint, onePoint);
        lastpoint = onePoint;
       if ( onePoint.x > checker.x + varianceAlowed  || onePoint.x < checker.x - varianceAlowed) {
@@ -395,6 +399,7 @@
       return NO;
       }
    }
+
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
     _verticalVelocity *= 50.0;
@@ -413,8 +418,13 @@
    if ([points count] < 20) return NO;
     CGPoint lastpoint = _firstTouch;
     float totaldistance = 0;
+    
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
+       
+       //Check if the current point is in the circle
+       if(![self isPointInsideCircle:onePoint]) return NO;
+       
        totaldistance += distanceBetweenPoints(lastpoint, onePoint);
        lastpoint = onePoint;
       if ( onePoint.y > checker.y + varianceAlowed  || onePoint.y < checker.y - varianceAlowed) {
@@ -430,6 +440,12 @@
       _verticalVelocity = speedLimit;
    }
    return YES;
+}
+
+-(bool)isPointInsideCircle:(CGPoint) p{
+    float maximumDistanceFromCenter = controlArea.frame.size.width/2;
+    float currentDistanceFromCenter = distanceBetweenPoints(controlArea.center,p);
+    return (currentDistanceFromCenter > maximumDistanceFromCenter ? NO:YES);
 }
 
 @end
