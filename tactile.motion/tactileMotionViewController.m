@@ -410,6 +410,7 @@
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
     _verticalVelocity *= 50.0;
+    if(lastpoint.y > _firstTouch.y) _verticalVelocity *= -1;
    return YES;
 }
 -(BOOL)checkDragHoro:(CGPoint)endPoint
@@ -437,6 +438,7 @@
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.
     _horizontalVelocity *= 50.0;
+    if(lastpoint.x < _firstTouch.x) _horizontalVelocity *= -1;
    return YES;
 }
 
