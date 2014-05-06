@@ -26,11 +26,7 @@ enum {
    self = [super initWithFrame:frame];
    if (self) {
       [self updateFrame];
-       _objectNumber = [[UILabel alloc]initWithFrame:self.frame];
-      _animator = kNone;
-       //Removed this line to stop the colour being automatically set
-       //If you look at the drawRect function that's where this should be done anyway.
-       //[self setBackgroundColor:col];
+             _animator = kNone;
        
        //Replaced with these lines instead:
             //Set Background to transparent
@@ -39,6 +35,19 @@ enum {
        _colour = col;
        
       [self setLabel:str];
+      UILabel *textField = [[UILabel alloc] initWithFrame:[self bounds]];
+      
+      textField.text = str;
+      textField.font = [UIFont fontWithName:@"Helvetica" size:28];
+      textField.textColor = [UIColor whiteColor];
+      textField.backgroundColor = [UIColor clearColor];
+      textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+      textField.textAlignment = NSTextAlignmentCenter;
+   //   textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+      
+      //[self setTextField:textField];
+      [self addSubview:textField];
+
    }
    return self;
 }
@@ -76,7 +85,7 @@ enum {
 -(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
 {
 //send a message to return the animator back to zero
-   doubleTap.numberOfTapsRequired =2;
+   [doubleTap setNumberOfTapsRequired:2];
    _animator = 0;
    
 }
@@ -233,10 +242,8 @@ enum {
     CGContextFillEllipseInRect(myContext, CGRectMake(0, 0, width, height));
     //OR draw a rectangle
    // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
-   [self.objectNumber setTextColor:[UIColor whiteColor]];
-   [self.objectNumber setFont:[UIFont systemFontOfSize:26]];
-   [self.objectNumber setText:self.label];
-   [self addSubview:_objectNumber];
+   _objectNumber.textColor = [UIColor whiteColor];
+   
 }
 //This part was tricky because it has to return a value to
 //make sure the newX and newY will be updated to make sure

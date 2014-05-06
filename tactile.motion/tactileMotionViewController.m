@@ -369,12 +369,13 @@
    if (!direction) return NO;
    
    //work out the velocity
-    _circleVelocity = points.count / totaldistance / _radius;
-   float speedAllowance = 0.006;
+    _circleVelocity =  totaldistance / points.count / _radius;
+   _circleVelocity *= 50;
+   float speedAllowance = 150;
    if (_circleVelocity > speedAllowance) {
       _circleVelocity = speedAllowance;
    }
-    _circleVelocity *= 3000;
+
    _circleVelocity *= direction;
    return YES;
 }
