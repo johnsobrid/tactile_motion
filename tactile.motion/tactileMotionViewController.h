@@ -65,6 +65,9 @@
 @property (readonly) NSArray *points;
 
 @property (nonatomic) float circleVelocity;
+@property (nonatomic) float horizontalVelocity;
+@property (nonatomic) float verticalVelocity;
+
 
 
 @end

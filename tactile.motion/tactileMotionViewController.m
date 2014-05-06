@@ -149,12 +149,12 @@
          vertDragDetected = [self checkDragVert:theAudioObjectView.endPoint];
          if (vertDragDetected)
          {
-            [theAudioObjectView beginVertDrag:100];
+            [theAudioObjectView beginVertDrag:_verticalVelocity];
          }
          horoDragDetected = [self checkDragHoro:theAudioObjectView.endPoint];
          if (horoDragDetected)
          {
-            [theAudioObjectView beginHoroDrag:100];
+            [theAudioObjectView beginHoroDrag:_horizontalVelocity];
          }
       [self circleReset];
    }
@@ -372,7 +372,7 @@
    if (!direction) return NO;
    
    //work out the velocity
-    _circleVelocity = points.count /totaldistance / _radius;
+    _circleVelocity = points.count / totaldistance / _radius;
    _circleVelocity *= direction;
    _circleVelocity *= 5000;
    float speedAllowance = 150;
@@ -390,15 +390,21 @@
    CGPoint checker = endPoint;
    float varianceAlowed = 50;
    if ([points count] < 20) return NO;
+    CGPoint lastpoint = _firstTouch;
+    float totaldistance = 0;
 
-   
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
+       totaldistance += distanceBetweenPoints(lastpoint, onePoint);
+       lastpoint = onePoint;
       if ( onePoint.x > checker.x + varianceAlowed  || onePoint.x < checker.x - varianceAlowed) {
          //if any of the points are out of the range then return NO and kick us out of the checker
       return NO;
       }
    }
+    _verticalVelocity = totaldistance/points.count;
+    //This scale factor should change
+    _verticalVelocity *= 50.0;
    return YES;
 }
 -(BOOL)checkDragHoro:(CGPoint)endPoint
@@ -407,13 +413,20 @@
    CGPoint checker = endPoint;
    float varianceAlowed = 50;
    if ([points count] < 20) return NO;
-   
+    CGPoint lastpoint = _firstTouch;
+    float totaldistance = 0;
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
+       totaldistance += distanceBetweenPoints(lastpoint, onePoint);
+       lastpoint = onePoint;
       if ( onePoint.y > checker.y + varianceAlowed  || onePoint.y < checker.y - varianceAlowed) {
          return NO;
       }
+       
    }
+    _horizontalVelocity = totaldistance/points.count;
+    //this scale factor should change.
+    _horizontalVelocity *= 50.0;
    return YES;
 }
 
