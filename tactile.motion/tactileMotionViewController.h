@@ -32,6 +32,9 @@
    BOOL vertDragDetected;
    BOOL horoDragDetected;
    NSTimer *animationTimer;
+   NSTimer *clock;
+   int timeSec;
+   int timeMin;
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
