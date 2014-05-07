@@ -36,6 +36,7 @@
    NSTimer *clock;
    int timeSec;
    int timeMin;
+    CFAbsoluteTime startTime;
 }
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -47,6 +48,7 @@
 @property int numOfSpeakers;
 @property int maxDistance;
 @property int numOfObjects;
+@property BOOL timerStarted;
 
 //OSC
 @property (strong, nonatomic) NSString *AddressInUse;

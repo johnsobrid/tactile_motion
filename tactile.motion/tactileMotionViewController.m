@@ -20,11 +20,12 @@
 
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
-    clock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
+    startTime =CFAbsoluteTimeGetCurrent();
+    _timerStarted = YES;
 }
 - (IBAction)stopPressed:(id)sender {
    [self oscSendState:@"/play" withState:0];
-   [clock invalidate];
+    startTime = 0;
    timeSec = 0;
    timeMin = 0;
    //Since we reset here, and timerTick won't update your label again, we need to refresh it again.
@@ -33,22 +34,32 @@
    //Display on your label
    // [timeLabel setStringValue:timeNow];
    statusField.text= timeNow;
+    _timerStarted = NO;
 }
 
-- (void)timerTick:(NSTimer *)timer {
-   timeSec++;
-   if (timeSec == 60)
-   {
-      timeSec = 0;
-      timeMin++;
-   }
+- (void)timerTick{
+    CFGregorianUnits time;
+    if (_timerStarted){
+    if (startTime){
+        CFAbsoluteTime current = CFAbsoluteTimeGetCurrent();
+       time = CFAbsoluteTimeGetDifferenceAsGregorianUnits(current,startTime,NULL,kCFGregorianUnitsSeconds);
+    }
+    else {
+        time.seconds = 0;
+        time.minutes = 0;
+    }
+    
    //Format the string 00:00
-   NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", timeMin, timeSec];
+    int seconds = (int)time.seconds;
+     NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", (int)time.minutes , seconds];
+
+  // NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", timeMin, timeSec];
    //Display on your label
    //[timeLabel setStringValue:timeNow];
    // timeLabel.text= timeNow;
    
    statusField.text = timeNow;
+    }
 }
 
 - (void)viewDidLoad
@@ -236,6 +247,7 @@
       [object animateWithDT:kAnimationInterval];
       
    }
+    [self timerTick];
 }
 //circle stuff
 - (NSArray *) points
