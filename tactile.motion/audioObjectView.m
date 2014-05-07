@@ -47,7 +47,6 @@ enum {
       
       //[self setTextField:textField];
       [self addSubview:textField];
-
    }
    return self;
 }
@@ -66,9 +65,9 @@ enum {
       _dragVelocity = [pan velocityInView:self];
    //   _currentD = [self getObjectD:self.center];
       [self updateFrame];
-      if (_d < _cavWidth) {
+     
          [self setMyCenter:self.center];
-      }
+      
    }
    if (pan.state == UIGestureRecognizerStateBegan)
    {
@@ -153,31 +152,22 @@ enum {
 
 -(void)vertDragWithDT:(float)dt
 {
-   float newY;
-   //hard coding is bad -- the area limit should be the edge of the control area
-   
-   if (_endPoint.y < _startPoint.y) {
-      newY = _y + _angularVelocity * dt;
-   } else
-   {
-      newY = _y - _angularVelocity * dt;
-   }      //if you are less than the old x you are going towards the left therefore take away from value
-    newY = [self constrainDistance:newY];
+    float newY;
+    if (fabsf(_d) > _cavWidth - self.frame.size.width/2){
+        _angularVelocity *= -1.0;
+    }
+    newY = _y + _angularVelocity * dt;
    [self setY:newY];
    [self setMyCenter:self.center];
 }
 -(void)horoDragWithDT:(float)dt
 {
-   float newX;
-   if (_endPoint.x > _startPoint.x) {
-      //you are going right so add to the value
-      newX = _x +_angularVelocity * dt;
-   } else
-   {
-      newX = _x -_angularVelocity * dt;
-   }   //if you are less than the old x you are going towards the left therefore take away from value
-    newX = [self constrainDistance:newX];
-    [self setX:newX];
+    float newX;
+    if (fabsf(_d) > _cavWidth - self.frame.size.width/2){
+        _angularVelocity *= -1.0;
+    }
+    newX = _x + _angularVelocity * dt;
+   [self setX:newX];
    [self setMyCenter:self.center];
 }
 
@@ -244,18 +234,6 @@ enum {
    // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
    _objectNumber.textColor = [UIColor whiteColor];
    
-}
-//This part was tricky because it has to return a value to
-//make sure the newX and newY will be updated to make sure
-//the distance encoding is done correctly.
-- (float)constrainDistance:(float)value{
-    float w = self.frame.size.width;
-    if (_d > _cavWidth - w){
-        _angularVelocity *= -1.0;
-        value = floorf(value);
-        value += (0.1 * _angularVelocity);
-    }
-    return value;
 }
 
 

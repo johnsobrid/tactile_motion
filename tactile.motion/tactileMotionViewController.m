@@ -434,6 +434,7 @@
    {
       _verticalVelocity = speedLimit;
    }
+    if(lastpoint.y > _firstTouch.y) _verticalVelocity *= -1;
    return YES;
 }
 -(BOOL)checkDragHoro:(CGPoint)endPoint
@@ -465,6 +466,7 @@
    {
       _verticalVelocity = speedLimit;
    }
+    if(lastpoint.x < _firstTouch.x) _horizontalVelocity *= -1;
    return YES;
 }
 
