@@ -20,9 +20,35 @@
 
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
+    clock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
 }
 - (IBAction)stopPressed:(id)sender {
    [self oscSendState:@"/play" withState:0];
+   [clock invalidate];
+   timeSec = 0;
+   timeMin = 0;
+   //Since we reset here, and timerTick won't update your label again, we need to refresh it again.
+   //Format the string in 00:00
+   NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", timeMin, timeSec];
+   //Display on your label
+   // [timeLabel setStringValue:timeNow];
+   statusField.text= timeNow;
+}
+
+- (void)timerTick:(NSTimer *)timer {
+   timeSec++;
+   if (timeSec == 60)
+   {
+      timeSec = 0;
+      timeMin++;
+   }
+   //Format the string 00:00
+   NSString* timeNow = [NSString stringWithFormat:@"%02d:%02d", timeMin, timeSec];
+   //Display on your label
+   //[timeLabel setStringValue:timeNow];
+   // timeLabel.text= timeNow;
+   
+   statusField.text = timeNow;
 }
 
 - (void)viewDidLoad

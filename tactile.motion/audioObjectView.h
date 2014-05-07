@@ -39,7 +39,6 @@
 -(void) beginSpinWithAngularVelocity:(float)f;
 -(void) beginVertDrag:(float)f;
 -(void)beginHoroDrag:(float)f;
--(float)constrainDistance:(float)value;
 
 
 

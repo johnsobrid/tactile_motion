@@ -38,6 +38,18 @@ enum {
        _colour = col;
        
       [self setLabel:str];
+      UILabel *textField = [[UILabel alloc] initWithFrame:[self bounds]];
+      
+      textField.text = str;
+      textField.font = [UIFont fontWithName:@"Helvetica" size:28];
+      textField.textColor = [UIColor whiteColor];
+      textField.backgroundColor = [UIColor clearColor];
+      textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+      textField.textAlignment = NSTextAlignmentCenter;
+      //   textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+      
+      //[self setTextField:textField];
+      [self addSubview:textField];
    }
     
    return self;
