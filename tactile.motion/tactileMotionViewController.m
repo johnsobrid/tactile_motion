@@ -11,6 +11,7 @@
 
 #define kAnimationInterval 0.02
 #define kOSCInterval 0.2
+static const float velocityScale = 30;
 
 @interface tactileMotionViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *play;
@@ -453,9 +454,10 @@
    if (!direction) return NO;
    
    //work out the velocity
-    _circleVelocity = points.count / totaldistance / _radius;
-   _circleVelocity *= direction;
-   _circleVelocity *= 5000;
+    _circleVelocity =  totaldistance / points.count / _radius;
+   
+   _circleVelocity *= velocityScale;
+    _circleVelocity *= direction;
    float speedAllowance = 150;
    if (_circleVelocity > speedAllowance) {
       _circleVelocity = speedAllowance;
