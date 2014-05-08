@@ -32,6 +32,7 @@
    BOOL vertDragDetected;
    BOOL horoDragDetected;
    NSTimer *animationTimer;
+    NSTimer *OSCTimer;
    
    NSTimer *clock;
    int timeSec;

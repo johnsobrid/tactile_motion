@@ -10,6 +10,7 @@
 #import "audioObjectView.h"
 
 #define kAnimationInterval 0.02
+#define kOSCInterval 0.2
 
 @interface tactileMotionViewController ()
 
@@ -82,6 +83,7 @@
    _center = CGPointZero;
    _radius = 0.0;
    animationTimer = [NSTimer scheduledTimerWithTimeInterval:kAnimationInterval target:self selector:@selector(animateAudioObjects:) userInfo:nil repeats:YES];
+    OSCTimer = [NSTimer scheduledTimerWithTimeInterval:kOSCInterval target:self selector:@selector(checkPositionHasChanged) userInfo:nil repeats:YES];
    controlArea.maxDistance = _maxDistance;
     //This is bad coding, but it works regardless...
     if (!_numOfSpeakers){
@@ -143,6 +145,18 @@
    }
 }
 
+
+- (void)checkPositionHasChanged{
+    
+    for (audioObjectView *obj in _audioObjects){
+        
+        if(obj.needsMessage){
+           [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:obj.d withTheta:obj.theta];
+        }
+    }
+    
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -176,23 +190,26 @@
       
    }
    else if ([keyPath isEqual:@"endPoint"]) {
-
+       
+       //vertDragDetected = [self checkDragVert:theAudioObjectView.endPoint];
+       if ([self checkDragVert:theAudioObjectView.endPoint])
+       {
+           [theAudioObjectView beginVertDrag:_verticalVelocity];
+           _verticalVelocity = 0;
+       }
+       //horoDragDetected = [self checkDragHoro:theAudioObjectView.endPoint];
+       else if ([self checkDragHoro:theAudioObjectView.endPoint])
+       {
+           [theAudioObjectView beginHoroDrag:_horizontalVelocity];
+           _horizontalVelocity = 0;
+       }
       //this should be changed to a switch statement so it only checks the others if the first is not true
-      circleDetected = [self checkCircle:theAudioObjectView.endPoint];
-      if (circleDetected) {
+      //circleDetected = [self checkCircle:theAudioObjectView.endPoint];
+      else if ([self checkCircle:theAudioObjectView.endPoint]) {
          //then start the timer that calls the spin function
          [theAudioObjectView beginSpinWithAngularVelocity:_circleVelocity];
       }
-         vertDragDetected = [self checkDragVert:theAudioObjectView.endPoint];
-         if (vertDragDetected)
-         {
-            [theAudioObjectView beginVertDrag:_verticalVelocity];
-         }
-         horoDragDetected = [self checkDragHoro:theAudioObjectView.endPoint];
-         if (horoDragDetected)
-         {
-            [theAudioObjectView beginHoroDrag:_horizontalVelocity];
-         }
+
       [self circleReset];
    }
 }

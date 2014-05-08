@@ -27,6 +27,7 @@
 @property float angularVelocity;
 @property int cavWidth;
 @property int  cavHeight;
+@property bool needsMessage;
 
 @property CGPoint dragVelocity;
 

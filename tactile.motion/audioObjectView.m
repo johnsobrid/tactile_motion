@@ -146,12 +146,14 @@ enum {
          //increase the theta by how ever much is needed
      float newTheta= _theta + _angularVelocity *dt;
    //keep it within the appropriate range
+    
       if (newTheta > TWO_PI) newTheta  -=TWO_PI;
       if (newTheta < 0) newTheta += TWO_PI;
 
    //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
    [self setTheta:newTheta];
-    [self setMyCenter:self.center];
+    _needsMessage = YES;
+   // [self setMyCenter:self.center];
 }
 
 -(void)vertDragWithDT:(float)dt
@@ -162,6 +164,7 @@ enum {
     }
     newY = _y + _angularVelocity * dt;
    [self setY:newY];
+    _needsMessage = YES;
 }
 -(void)horoDragWithDT:(float)dt
 {
@@ -171,6 +174,7 @@ enum {
     }
     newX = _x + _angularVelocity * dt;
    [self setX:newX];
+    _needsMessage = YES;
 }
 
 -(void)setTheta:(float)theta
