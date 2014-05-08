@@ -22,6 +22,12 @@ static const float velocityScale = 30;
 
 @implementation tactileMotionViewController
 
+- (IBAction)stopAllMotion:(id)sender {
+    
+    for (audioObjectView *obj in _audioObjects){
+        obj.animator = 0;
+    };
+}
 
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
