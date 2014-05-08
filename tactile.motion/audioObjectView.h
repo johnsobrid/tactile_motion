@@ -27,6 +27,7 @@
 @property float angularVelocity;
 @property int cavWidth;
 @property int  cavHeight;
+@property bool needsMessage;
 
 @property CGPoint dragVelocity;
 
@@ -39,7 +40,8 @@
 -(void) beginSpinWithAngularVelocity:(float)f;
 -(void) beginVertDrag:(float)f;
 -(void)beginHoroDrag:(float)f;
--(float)constrainDistance:(float)value;
+-(void)stopMotion;
+
 
 @property UILabel *objectNumber;
 

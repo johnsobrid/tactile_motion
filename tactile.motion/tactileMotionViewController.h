@@ -46,6 +46,7 @@
 @property int numOfSpeakers;
 @property int maxDistance;
 @property int numOfObjects;
+@property BOOL timerStarted;
 
 //OSC
 @property (strong, nonatomic) NSString *AddressInUse;

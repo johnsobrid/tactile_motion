@@ -98,6 +98,11 @@ enum {
 
 }
 
+-(void)stopMotion
+{
+   _animator = kNone;
+}
+
 -(void) beginSpinWithAngularVelocity:(float)f
 {
    _animator = kSpin;
@@ -143,6 +148,7 @@ enum {
          //increase the theta by how ever much is needed
      float newTheta= _theta + _angularVelocity *dt;
    //keep it within the appropriate range
+    
       if (newTheta > TWO_PI) newTheta  -=TWO_PI;
       if (newTheta < 0) newTheta += TWO_PI;
    //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
