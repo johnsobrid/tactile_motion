@@ -86,9 +86,8 @@ enum {
 -(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
 {
 //send a message to return the animator back to zero
-   doubleTap.numberOfTapsRequired =2;
-   _animator = 0;
-   
+   doubleTap.numberOfTapsRequired =1;
+   [self stopMotion];
 }
 
 -(void)updateFrame
@@ -99,6 +98,11 @@ enum {
    _d = sqrtf(_x * _x + _y * _y);
    _theta = atan2f(_y,_x);
 
+}
+
+-(void)stopMotion
+{
+   _animator = kNone;
 }
 
 -(void) beginSpinWithAngularVelocity:(float)f

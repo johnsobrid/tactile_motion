@@ -21,6 +21,11 @@
 
 @implementation tactileMotionViewController
 
+- (IBAction)motionStop:(UIButton *)sender {
+   for (audioObjectView *obj in _audioObjects){
+      [obj stopMotion];
+   }
+}
 
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
