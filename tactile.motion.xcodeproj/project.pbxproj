@@ -31,6 +31,90 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F6FA28C191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 961EA8ED100E8565007E6C25;
+			remoteInfo = VVBasics;
+		};
+		4F6FA28E191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96B06C1C18BE0ECF000A921C;
+			remoteInfo = VVUIToolbox;
+		};
+		4F6FA290191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 961745F4100F86B400FB60E6;
+			remoteInfo = VVMIDI;
+		};
+		4F6FA292191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9628D0C5100E89F700C3944E;
+			remoteInfo = VVOSC;
+		};
+		4F6FA294191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 968FAA86108B6141000E470D;
+			remoteInfo = CrashReporterTestApp;
+		};
+		4F6FA296191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9656D900100F89BA0064EEA6;
+			remoteInfo = MIDITestApp;
+		};
+		4F6FA298191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9628D179100E8B4D00C3944E;
+			remoteInfo = OSCTestApp;
+		};
+		4F6FA29A191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96B49302106AEB4C008FB26E;
+			remoteInfo = MIDIviaOSC;
+		};
+		4F6FA29C191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 966CCBD81431EFB9006D580F;
+			remoteInfo = OSCQueryTest;
+		};
+		4F6FA29E191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96ACD7211706416300138AE6;
+			remoteInfo = OSCPingTester;
+		};
+		4F6FA2A0191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96C18C2D185A1A740082DE35;
+			remoteInfo = VVBasicsStatic;
+		};
+		4F6FA2A2191C339100F66F1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96C18C3E185A1A7D0082DE35;
+			remoteInfo = VVOSCStatic;
+		};
 		4FB0B13F18A0754E008486F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4FB0B11118A0754E008486F1 /* Project object */;
@@ -143,6 +227,7 @@
 		4F02B44618AC68CE00EB8A0D /* CircleGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleGestureRecognizer.m; sourceTree = "<group>"; };
 		4F1187D718B15A1C00878073 /* ControlAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlAreaViewController.h; sourceTree = "<group>"; };
 		4F1187D818B15A1C00878073 /* ControlAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlAreaViewController.m; sourceTree = "<group>"; };
+		4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VVOpenSource.xcodeproj; path = "../vvopensource-master/VVOpenSource.xcodeproj"; sourceTree = "<group>"; };
 		4F705A6118A183CC000B0030 /* audioObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioObjectView.h; sourceTree = "<group>"; };
 		4F705A6218A183CC000B0030 /* audioObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = audioObjectView.m; sourceTree = "<group>"; };
 		4FB0B11918A0754E008486F1 /* tactile.motion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tactile.motion.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +315,25 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		4F6FA27C191C339100F66F1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F6FA28D191C339100F66F1A /* VVBasics.framework */,
+				4F6FA28F191C339100F66F1A /* VVUIToolbox.framework */,
+				4F6FA291191C339100F66F1A /* VVMIDI.framework */,
+				4F6FA293191C339100F66F1A /* VVOSC.framework */,
+				4F6FA295191C339100F66F1A /* CrashReporterTestApp.app */,
+				4F6FA297191C339100F66F1A /* MIDITestApp.app */,
+				4F6FA299191C339100F66F1A /* OSCTestApp.app */,
+				4F6FA29B191C339100F66F1A /* MIDIviaOSC.app */,
+				4F6FA29D191C339100F66F1A /* OSCQueryTest.app */,
+				4F6FA29F191C339100F66F1A /* OSCPingTester.app */,
+				4F6FA2A1191C339100F66F1A /* libVVBasics.a */,
+				4F6FA2A3191C339100F66F1A /* libVVOSC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4FB0B11018A0754E008486F1 = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +342,7 @@
 				4FB0B11B18A0754E008486F1 /* Frameworks */,
 				4FB0B11A18A0754E008486F1 /* Products */,
 				54C16EF4191A479900EB3CF9 /* VVOpenSource.xcodeproj */,
+				4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -392,6 +497,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 4F6FA27C191C339100F66F1A /* Products */;
+					ProjectRef = 4F6FA27B191C339100F66F1A /* VVOpenSource.xcodeproj */;
+				},
+				{
 					ProductGroup = 54C16EF5191A479900EB3CF9 /* Products */;
 					ProjectRef = 54C16EF4191A479900EB3CF9 /* VVOpenSource.xcodeproj */;
 				},
@@ -405,6 +514,90 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4F6FA28D191C339100F66F1A /* VVBasics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVBasics.framework;
+			remoteRef = 4F6FA28C191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA28F191C339100F66F1A /* VVUIToolbox.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVUIToolbox.framework;
+			remoteRef = 4F6FA28E191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA291191C339100F66F1A /* VVMIDI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVMIDI.framework;
+			remoteRef = 4F6FA290191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA293191C339100F66F1A /* VVOSC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVOSC.framework;
+			remoteRef = 4F6FA292191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA295191C339100F66F1A /* CrashReporterTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CrashReporterTestApp.app;
+			remoteRef = 4F6FA294191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA297191C339100F66F1A /* MIDITestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = MIDITestApp.app;
+			remoteRef = 4F6FA296191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA299191C339100F66F1A /* OSCTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OSCTestApp.app;
+			remoteRef = 4F6FA298191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA29B191C339100F66F1A /* MIDIviaOSC.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = MIDIviaOSC.app;
+			remoteRef = 4F6FA29A191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA29D191C339100F66F1A /* OSCQueryTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OSCQueryTest.app;
+			remoteRef = 4F6FA29C191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA29F191C339100F66F1A /* OSCPingTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OSCPingTester.app;
+			remoteRef = 4F6FA29E191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA2A1191C339100F66F1A /* libVVBasics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVVBasics.a;
+			remoteRef = 4F6FA2A0191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4F6FA2A3191C339100F66F1A /* libVVOSC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVVOSC.a;
+			remoteRef = 4F6FA2A2191C339100F66F1A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		54C16F08191A479900EB3CF9 /* VVBasics.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
