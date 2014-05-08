@@ -153,7 +153,19 @@
     for (audioObjectView *obj in _audioObjects){
         
         if(obj.needsMessage){
-           [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:obj.d withTheta:obj.theta];
+            CGPoint cavcenter = controlArea.center;
+            obj.x -= cavcenter.x;
+            obj.y -= cavcenter.y;
+            
+            float d = sqrtf(obj.x*obj.x+obj.y*obj.y);
+            d = d/(controlArea.bounds.size.width/2)*_maxDistance;
+            float theta = atan2f(obj.y,obj.x);
+            if (theta < 0.0)
+            {
+                theta = theta + (M_PI *2);
+            }
+
+           [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:d withTheta:theta];
         }
     }
     
