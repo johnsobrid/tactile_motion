@@ -149,26 +149,24 @@
 
 
 - (void)checkPositionHasChanged{
-    
     for (audioObjectView *obj in _audioObjects){
-        
+        CGPoint loc = obj.center;
+       
         if(obj.needsMessage){
-            CGPoint cavcenter = controlArea.center;
-            obj.x -= cavcenter.x;
-            obj.y -= cavcenter.y;
-            
-            float d = sqrtf(obj.x*obj.x+obj.y*obj.y);
-            d = d/(controlArea.bounds.size.width/2)*_maxDistance;
-            float theta = atan2f(obj.y,obj.x);
-            if (theta < 0.0)
-            {
-                theta = theta + (M_PI *2);
-            }
-
+           CGPoint cavcenter = controlArea.center;
+           loc.x -= cavcenter.x;
+           loc.y -= cavcenter.y;
+           
+           float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
+           d = d/(controlArea.bounds.size.width/2)*_maxDistance;
+           float theta = atan2f(loc.y,loc.x);
+           if (theta < 0.0)
+           {
+              theta = theta + (M_PI *2);
+           }
            [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:d withTheta:theta];
         }
     }
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -479,6 +477,11 @@
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
     _verticalVelocity *= 50.0;
+   float speedAllowance = 150;
+   if (_verticalVelocity > speedAllowance) {
+      _verticalVelocity = speedAllowance;
+   }
+
     if(lastpoint.y > _firstTouch.y) _verticalVelocity *= -1;
    return YES;
 }
@@ -507,6 +510,10 @@
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.
     _horizontalVelocity *= 50.0;
+   float speedAllowance = 150;
+   if (_horizontalVelocity > speedAllowance) {
+      _horizontalVelocity = speedAllowance;
+   }
     if(lastpoint.x < _firstTouch.x) _horizontalVelocity *= -1;
    return YES;
 }
