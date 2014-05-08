@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *speakersLabel;
 @property (strong, nonatomic) IBOutlet UILabel *objectsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (strong, nonatomic) IBOutlet UIButton *doneButton;
 
 @end
 
@@ -36,6 +37,7 @@ int saveSpeakers;
     //in the case that the settings haven't been saved yet?
     //[self.speakersLabelOutlet s]
     [self.speakersLabelOutlet setValue:8];
+    _doneButton.layer.cornerRadius = 25;
    
 }
 
@@ -149,7 +151,7 @@ int saveSpeakers;
 }
 
 
--(void)tableView:networkTV didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:networkTV didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   // UITableViewCell *selectedCell = [networkTV cellForRowAtIndexPath:indexPath];
   

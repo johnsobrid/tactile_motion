@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="vrf-gb-9NI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="vrf-gb-9NI">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -179,6 +180,7 @@
                     <connections>
                         <outlet property="distanceLabel" destination="OgB-rm-4lF" id="5op-5J-BxP"/>
                         <outlet property="distanceLabelOutlet" destination="KBV-x0-mBD" id="7dv-Ke-AN2"/>
+                        <outlet property="doneButton" destination="OKu-IZ-bkA" id="dP0-xo-fFc"/>
                         <outlet property="ipField" destination="qaS-1C-4Fe" id="Eai-dI-ShX"/>
                         <outlet property="networkTV" destination="6kR-EY-Al2" id="CES-qD-WmV"/>
                         <outlet property="objectLabelOutlet" destination="kdK-gh-wU7" id="zv4-d5-Jm9"/>
@@ -231,12 +233,10 @@
                                     <segue destination="LlE-zi-JIn" kind="push" id="H32-5O-cZs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-Vx-Bhf">
-                                <rect key="frame" x="27" y="69" width="54" height="48"/>
+                            <button opaque="NO" alpha="0.5499999999999996" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-Vx-Bhf">
+                                <rect key="frame" x="33" y="66" width="44" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.058823533359999999" green="0.87450987099999999" blue="0.27843138579999999" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Play">
+                                <state key="normal" backgroundImage="playbutton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -244,12 +244,11 @@
                                     <action selector="playPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FKg-YS-vdu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8T-Il-46l">
-                                <rect key="frame" x="99" y="69" width="52" height="49"/>
+                            <button opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8T-Il-46l">
+                                <rect key="frame" x="99" y="69" width="48" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Stop">
+                                <state key="normal" backgroundImage="stopButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -269,7 +268,10 @@
                     <navigationItem key="navigationItem" title="tactile.motion" id="QFo-rJ-03G"/>
                     <connections>
                         <outlet property="controlArea" destination="WOW-CA-5lB" id="6Fc-bf-Lnt"/>
+                        <outlet property="play" destination="Jbq-Vx-Bhf" id="gfU-68-Qfk"/>
                         <outlet property="statusField" destination="fDQ-qf-zZd" id="fej-9M-GIc"/>
+                        <outlet property="stop" destination="h8T-Il-46l" id="FM5-aS-QRk"/>
+                        <outlet property="textfield" destination="fDQ-qf-zZd" id="TSS-nR-SY5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -300,6 +302,10 @@
             <point key="canvasLocation" x="-832" y="-293"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="playbutton" width="50" height="58"/>
+        <image name="stopButton" width="611" height="611"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
