@@ -166,17 +166,18 @@ static const float velocityScale = 30;
         CGPoint loc = obj.center;
        
         if(obj.needsMessage){
-           CGPoint cavcenter = controlArea.center;
-           loc.x -= cavcenter.x;
-           loc.y -= cavcenter.y;
-           
-           float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
-           d = d/(controlArea.bounds.size.width/2)*_maxDistance;
-           float theta = atan2f(loc.y,loc.x);
-           if (theta < 0.0)
-           {
-              theta = theta + (M_PI *2);
-           }
+            CGPoint cavcenter = controlArea.center;
+            float tempx = obj.x - cavcenter.x;
+            float tempy = obj.y - cavcenter.y;
+            
+            float d = sqrtf(tempx*tempy+tempx*tempy);
+            d = d/(controlArea.bounds.size.width/2)*_maxDistance;
+            float theta = atan2f(tempx,tempy);
+            if (theta < 0.0)
+            {
+                theta = theta + (M_PI *2);
+            }
+
            [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:d withTheta:theta];
         }
     }
@@ -490,12 +491,7 @@ static const float velocityScale = 30;
 
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
-    _verticalVelocity *= 50.0;
-   float speedAllowance = 150;
-   if (_verticalVelocity > speedAllowance) {
-      _verticalVelocity = speedAllowance;
-   }
-
+    _verticalVelocity *= velocityScale;
     if(lastpoint.y > _firstTouch.y) _verticalVelocity *= -1;
    return YES;
 }
@@ -523,11 +519,7 @@ static const float velocityScale = 30;
    }
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.
-    _horizontalVelocity *= 50.0;
-   float speedAllowance = 150;
-   if (_horizontalVelocity > speedAllowance) {
-      _horizontalVelocity = speedAllowance;
-   }
+    _horizontalVelocity *= velocityScale;
     if(lastpoint.x < _firstTouch.x) _horizontalVelocity *= -1;
    return YES;
 }
