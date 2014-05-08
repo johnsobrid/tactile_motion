@@ -13,6 +13,9 @@
 #define kOSCInterval 0.2
 
 @interface tactileMotionViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *play;
+@property (strong, nonatomic) IBOutlet UIButton *stop;
+@property (strong, nonatomic) IBOutlet UITextField *textfield;
 
 @end
 
@@ -92,7 +95,11 @@
         _numOfSpeakers = 8;
     }
    controlArea.kNumofSpeakers = _numOfSpeakers;
-    
+    _stop.layer.cornerRadius = 24;
+    //_stop.layer.borderWidth = 2;
+    //_stop.layer.borderColor = [UIColor whiteColor].CGColor;
+    _play.layer.cornerRadius = 24;
+    _textfield.textAlignment = 1;
    
 }
 -(void)viewWillAppear:(BOOL)animated
