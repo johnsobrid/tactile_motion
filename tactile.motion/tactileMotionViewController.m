@@ -11,6 +11,7 @@
 
 #define kAnimationInterval 0.02
 #define kOSCInterval 0.2
+static const float velocityScale = 30;
 
 @interface tactileMotionViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *play;
@@ -161,12 +162,12 @@
         
         if(obj.needsMessage){
             CGPoint cavcenter = controlArea.center;
-            obj.x -= cavcenter.x;
-            obj.y -= cavcenter.y;
+            float tempx = obj.x - cavcenter.x;
+            float tempy = obj.y - cavcenter.y;
             
-            float d = sqrtf(obj.x*obj.x+obj.y*obj.y);
+            float d = sqrtf(tempx*tempy+tempx*tempy);
             d = d/(controlArea.bounds.size.width/2)*_maxDistance;
-            float theta = atan2f(obj.y,obj.x);
+            float theta = atan2f(tempx,tempy);
             if (theta < 0.0)
             {
                 theta = theta + (M_PI *2);
@@ -450,9 +451,10 @@
    if (!direction) return NO;
    
    //work out the velocity
-    _circleVelocity = points.count / totaldistance / _radius;
-   _circleVelocity *= direction;
-   _circleVelocity *= 5000;
+    _circleVelocity =  totaldistance / points.count / _radius;
+   
+   _circleVelocity *= velocityScale;
+    _circleVelocity *= direction;
    float speedAllowance = 150;
    if (_circleVelocity > speedAllowance) {
       _circleVelocity = speedAllowance;
@@ -485,7 +487,7 @@
 
     _verticalVelocity = totaldistance/points.count;
     //This scale factor should change
-    _verticalVelocity *= 50.0;
+    _verticalVelocity *= velocityScale;
     if(lastpoint.y > _firstTouch.y) _verticalVelocity *= -1;
    return YES;
 }
@@ -513,7 +515,7 @@
    }
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.
-    _horizontalVelocity *= 50.0;
+    _horizontalVelocity *= velocityScale;
     if(lastpoint.x < _firstTouch.x) _horizontalVelocity *= -1;
    return YES;
 }
