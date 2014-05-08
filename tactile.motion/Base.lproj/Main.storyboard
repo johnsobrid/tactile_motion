@@ -215,17 +215,16 @@
                                 <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDQ-qf-zZd">
-                                <rect key="frame" x="185" y="70" width="399" height="30"/>
+                                <rect key="frame" x="156" y="79" width="379" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAi-vw-saZ">
-                                <rect key="frame" x="650" y="45" width="82" height="30"/>
+                            <button opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAi-vw-saZ">
+                                <rect key="frame" x="684" y="20" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="settings">
+                                <state key="normal" backgroundImage="settings2">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -234,8 +233,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.5499999999999996" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-Vx-Bhf">
-                                <rect key="frame" x="33" y="66" width="44" height="52"/>
+                                <rect key="frame" x="64" y="66" width="44" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.13498805689999999" green="0.34371014030000002" blue="0.1700873863" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" backgroundImage="playbutton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -245,7 +245,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8T-Il-46l">
-                                <rect key="frame" x="99" y="69" width="48" height="46"/>
+                                <rect key="frame" x="589" y="69" width="48" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" backgroundImage="stopButton">
@@ -304,6 +304,7 @@
     </scenes>
     <resources>
         <image name="playbutton" width="50" height="58"/>
+        <image name="settings2" width="70" height="70"/>
         <image name="stopButton" width="611" height="611"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
