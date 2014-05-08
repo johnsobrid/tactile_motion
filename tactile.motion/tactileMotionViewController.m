@@ -49,6 +49,8 @@
         time.seconds = 0;
         time.minutes = 0;
     }
+        time.minutes = time.seconds/60;
+        time.seconds = (int)time.seconds % 60;
     
    //Format the string 00:00
     int seconds = (int)time.seconds;
