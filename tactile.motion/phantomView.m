@@ -19,7 +19,7 @@
    if (self) {
       // Initialization code
    }
-   self.layer.opacity = 0.4;
+   self.layer.opacity = 0.3;
    [self setBackgroundColor:[UIColor clearColor]];
    //Set variable colour to the intended colour
    _colour = col;
