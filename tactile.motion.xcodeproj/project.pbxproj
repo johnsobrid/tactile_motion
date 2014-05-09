@@ -28,6 +28,7 @@
 		4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9F54E18B45188003573BB /* SettingsPageViewController.m */; };
 		54C16F34191A47CB00EB3CF9 /* libVVBasics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C16F1C191A479900EB3CF9 /* libVVBasics.a */; };
 		54C16F35191A47CB00EB3CF9 /* libVVOSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C16F1E191A479900EB3CF9 /* libVVOSC.a */; };
+		54D295F2191C313F00ABD880 /* phantomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D295F1191C313F00ABD880 /* phantomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,8 @@
 		4FC9F54D18B45188003573BB /* SettingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPageViewController.h; sourceTree = "<group>"; };
 		4FC9F54E18B45188003573BB /* SettingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsPageViewController.m; sourceTree = "<group>"; };
 		54C16EF4191A479900EB3CF9 /* VVOpenSource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VVOpenSource.xcodeproj; path = ../../../../../Developer/vvopensource/VVOpenSource.xcodeproj; sourceTree = "<group>"; };
+		54D295F0191C313F00ABD880 /* phantomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phantomView.h; sourceTree = "<group>"; };
+		54D295F1191C313F00ABD880 /* phantomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = phantomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 				4F705A6218A183CC000B0030 /* audioObjectView.m */,
 				4FB0B15118A07671008486F1 /* controlAreaView.h */,
 				4FB0B15218A07671008486F1 /* controlAreaView.m */,
+				54D295F0191C313F00ABD880 /* phantomView.h */,
+				54D295F1191C313F00ABD880 /* phantomView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				4FB0B12918A0754E008486F1 /* main.m in Sources */,
 				4F1187D918B15A1C00878073 /* ControlAreaViewController.m in Sources */,
 				4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */,
+				54D295F2191C313F00ABD880 /* phantomView.m in Sources */,
 				4FB0B12D18A0754E008486F1 /* tactileMotionAppDelegate.m in Sources */,
 				4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */,
 				4FB0B13318A0754E008486F1 /* tactileMotionViewController.m in Sources */,
@@ -666,7 +672,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tactile.motion/tactile.motion-Prefix.pch";
 				INFOPLIST_FILE = "tactile.motion/tactile.motion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -684,7 +690,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tactile.motion/tactile.motion-Prefix.pch";
 				INFOPLIST_FILE = "tactile.motion/tactile.motion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

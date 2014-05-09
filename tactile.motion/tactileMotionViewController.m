@@ -11,7 +11,7 @@
 #import "phantomView.h"
 
 #define kAnimationInterval 0.02
-#define kOSCInterval 0.2
+#define kOSCInterval 0.05
 static const float velocityScale = 30;
 
 @interface tactileMotionViewController ()
