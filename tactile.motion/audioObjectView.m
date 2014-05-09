@@ -62,7 +62,7 @@ enum {
 -(void) dragging:(UIPanGestureRecognizer *)pan
 {
    if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged) {
-      
+      _needsMessage = YES;
       CGPoint delta = [pan translationInView:self];
       CGPoint centre = self.center;
       centre.x += delta.x;
