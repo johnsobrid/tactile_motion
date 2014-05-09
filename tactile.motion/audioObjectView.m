@@ -50,6 +50,10 @@ enum {
       
       //[self setTextField:textField];
       [self addSubview:textField];
+       NSLog(@"%f,     %f",_x,_y);
+       [self setX:_x];
+       [self setY:_y];
+       [self setHome];
    }
     
    return self;
@@ -238,6 +242,20 @@ enum {
     CGContextFillEllipseInRect(myContext, CGRectMake(0, 0, width, height));
     //OR draw a rectangle
    // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
+}
+
+- (void)goHome{
+    [self setX:_homePosition.x];
+    [self setY:_homePosition.y];
+    //NSLog(@"%f,  %f",_homePosition.x,_homePosition.y);
+}
+
+- (void)setHome{
+   // CGPoint home = [self convertPoint:self.frame.origin toView:self.superview];
+    NSLog(@"%i",_cavWidth);
+    _homePosition.x = _x - (self.superview.frame.size.width);
+    _homePosition.y = _y/3;// + _cavWidth/2;
+    
 }
 
 

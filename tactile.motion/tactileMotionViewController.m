@@ -8,6 +8,7 @@
 
 #import "tactileMotionViewController.h"
 #import "audioObjectView.h"
+#import "phantomView.h"
 
 #define kAnimationInterval 0.02
 #define kOSCInterval 0.2
@@ -26,6 +27,7 @@ static const float velocityScale = 30;
     
     for (audioObjectView *obj in _audioObjects){
         obj.animator = 0;
+        [obj goHome];
     };
 }
 
@@ -133,11 +135,30 @@ static const float velocityScale = 30;
    
    float xIncr = boxWidth + gapWidth;
    
+    for (int i=0;i< _numOfObjects;i++,x+=xIncr) {
+        CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
+        phantomView *objectView = [[phantomView alloc] initWithFrame:rect
+                                                                      colour: [self objectColour:i]
+                                                                       label:[NSString stringWithFormat:@"%i",i]];
+        [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(phantomSingleTapOccured:)]];
+        [objectView addGestureRecognizer:[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(phantomLongTapOccured:)]];
+        [[self view] addSubview:objectView];
+        [_phantoms addObject:objectView];
+        [objectView setNeedsDisplay];
+        objectView.myIndex = i;
+    }
+    x = gapWidth;
+     y = bounds.size.height - (boxWidth*1.25);
+    
+     xIncr = boxWidth + gapWidth;
+    
    for (int i=0;i< _numOfObjects;i++,x+=xIncr) {
       CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
                                                                     colour: [self objectColour:i]
                                                                      label:[NSString stringWithFormat:@"%i",i]];
+       //[objectView setHome:x:y];
+       
       [objectView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:objectView action:@selector(dragging:)]];
       [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
       [objectView setCavWidth:controlArea.center.x];
@@ -184,6 +205,7 @@ static const float velocityScale = 30;
     }
     
 }
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -530,6 +552,33 @@ static const float velocityScale = 30;
     float maximumDistanceFromCenter = controlArea.frame.size.width/2;
     float currentDistanceFromCenter = distanceBetweenPoints(controlArea.center,p);
     return (currentDistanceFromCenter > maximumDistanceFromCenter ? NO:YES);
+}
+
+-(void)phantomSingleTapOccured:(UITapGestureRecognizer *) singletap{
+    singletap.numberOfTapsRequired = 1;
+    //Get the gesture view
+    phantomView * ph = (phantomView *) singletap.view;
+    //Get the index of the phantomview
+    int index = ph.myIndex;
+    
+    NSLog(@"%d",index);
+    //Use this view to find the corresponding audioobject
+    audioObjectView * av = [_audioObjects objectAtIndex:index];
+    //set the audioobjects animator to zero
+    av.animator = 0;
+}
+
+-(void)phantomLongTapOccured:(UILongPressGestureRecognizer *) longtap{
+    phantomView * ph = (phantomView *) longtap.view;
+    longtap.cancelsTouchesInView = true;
+    int index = ph.myIndex;
+    NSLog(@"%d",index);
+    audioObjectView * av = [_audioObjects objectAtIndex:index];
+    av.animator = 0;
+    [av goHome];
+    [self.view sendSubviewToBack:ph];
+    [self.view bringSubviewToFront:av];
+    
 }
 
 @end

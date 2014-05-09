@@ -45,6 +45,7 @@
                         change:(NSDictionary *)change
                        context:(void *)context;
 @property (strong) NSMutableArray *audioObjects;
+@property (strong) NSMutableArray *phantoms;
 
 @property int numOfSpeakers;
 @property int maxDistance;
