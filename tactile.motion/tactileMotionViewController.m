@@ -11,7 +11,7 @@
 #import "phantomView.h"
 
 #define kAnimationInterval 0.02
-#define kOSCInterval 0.05
+#define kOSCInterval 0.02
 static const float velocityScale = 30;
 
 @interface tactileMotionViewController ()
@@ -189,19 +189,7 @@ static const float velocityScale = 30;
     for (audioObjectView *obj in _audioObjects){
         
         if(obj.needsMessage){
-            CGPoint cavcenter = controlArea.center;
-            float tempx = obj.x - cavcenter.x;
-            float tempy = obj.y - cavcenter.y;
-            
-            float d = sqrtf(tempx*tempy+tempx*tempy);
-            d = d/(controlArea.bounds.size.width/2)*_maxDistance;
-            float theta = atan2f(tempx,tempy);
-            if (theta < 0.0)
-            {
-                theta = theta + (M_PI *2);
-            }
-
-           [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:d withTheta:theta];
+           [self oscObjectSend:[NSString stringWithFormat:@"object%@", obj.label] withX:obj.center.x withY:obj.center.y];
         }
     }
 }
@@ -214,25 +202,9 @@ static const float velocityScale = 30;
    audioObjectView *theAudioObjectView = object;
    
    if ([keyPath isEqual:@"myCenter"]) {
-      NSString *label = [theAudioObjectView label];
       CGPoint loc = theAudioObjectView.myCenter;
       [self updateCircle:loc];
-      
-      // get center of control area view
-      CGPoint cavcenter = controlArea.center;
-      loc.x -= cavcenter.x;
-      loc.y -= cavcenter.y;
-      
-      float d = sqrtf(loc.x*loc.x+loc.y*loc.y);
-      d = d/(controlArea.bounds.size.width/2)*_maxDistance;
-      float theta = atan2f(loc.y,loc.x);
-      if (theta < 0.0)
-      {
-         theta = theta + (M_PI *2);
-      }
-      
-      [self oscSend:[NSString stringWithFormat:@"object%@", label] withD:d withTheta:theta];
-   }
+         }
    else if ([keyPath isEqual:@"startPoint"]) {
       [self firstTouch:theAudioObjectView.startPoint];
       
@@ -281,14 +253,31 @@ static const float velocityScale = 30;
     [statusField setText:status];
 }
 
--(void)oscSend:(NSString *)messageString withD:(float)d withTheta:(float)theta
+-(void)oscObjectSend:(NSString *)messageString withX:(float)x withY:(float)y
 {
    //send the position over OSC
    
    OSCMessage *newMessage = [OSCMessage createWithAddress:messageString];
-   [newMessage addFloat:d];
-   [newMessage addFloat:theta];
-   [outPort sendThisMessage:newMessage];
+   CGPoint cavcenter = controlArea.center;
+    x -= cavcenter.x;
+    y -= cavcenter.y;
+   
+   float d = sqrtf(x*x+y*y);
+   
+   d = (d/(controlArea.bounds.size.width/2));
+   d = d*_maxDistance;
+   float theta = atan2f(y,x);
+   if (theta < 0.0)
+   {
+      theta = theta + (M_PI *2);
+   }
+   
+   if (d < _maxDistance) {
+      [newMessage addFloat:d];
+      [newMessage addFloat:theta];
+      [outPort sendThisMessage:newMessage];
+   }
+   
 }
 -(void)oscSendState:(NSString *)messageString withState:(int)state
 {
@@ -537,7 +526,6 @@ static const float velocityScale = 30;
       if ( onePoint.y > checker.y + varianceAlowed  || onePoint.y < checker.y - varianceAlowed) {
          return NO;
       }
-       
    }
     _horizontalVelocity = totaldistance/points.count;
     //this scale factor should change.

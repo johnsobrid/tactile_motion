@@ -79,11 +79,13 @@ enum {
    if (pan.state == UIGestureRecognizerStateBegan)
    {
       [self setStartPoint:self.center];
+      _needsMessage = YES;
    }
    if(pan.state == UIGestureRecognizerStateEnded)
    {
        _endPoint = self.center;
       [self setEndPoint:self.center];
+      _needsMessage = YES;
    }
 }
 -(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
