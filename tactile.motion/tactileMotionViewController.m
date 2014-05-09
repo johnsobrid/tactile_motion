@@ -166,6 +166,7 @@ static const float velocityScale = 30;
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
+       objectView.myIndex = i;
       [objectView addObserver:self
                  forKeyPath:@"myCenter"
                     options:(NSKeyValueObservingOptionNew |

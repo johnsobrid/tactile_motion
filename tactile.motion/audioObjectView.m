@@ -233,7 +233,7 @@ enum {
     //Move position to center in order to...
     CGContextTranslateCTM(myContext, width/2, height/2);
     //Rotate it about it's center with the rotation variable
-    CGContextRotateCTM(myContext, _theta);
+    //CGContextRotateCTM(myContext, _theta);
     //Move it back into position
     CGContextTranslateCTM(myContext, -width/2, -height/2);
     //Set the fill colour to the colour variable
@@ -245,14 +245,23 @@ enum {
 }
 
 - (void)goHome{
-    [self setX:_homePosition.x];
-    [self setY:_homePosition.y];
+    //These values are almost right,
+    float boxWidth = 76;
+    float gapWidth = (self.superview.bounds.size.width - (boxWidth * 8)) / (8 + 1);
+    float ypos = self.superview.bounds.size.height - (boxWidth*1.5);
+    float xoff = self.superview.bounds.size.width/2;
+
+    float xIncr = boxWidth + gapWidth;
+    float xpos = (_myIndex * xIncr) - xoff + (3*boxWidth/4);
+    [self setX:xpos];
+    [self setY:-ypos/2];
+    
     //NSLog(@"%f,  %f",_homePosition.x,_homePosition.y);
 }
 
 - (void)setHome{
    // CGPoint home = [self convertPoint:self.frame.origin toView:self.superview];
-    NSLog(@"%i",_cavWidth);
+    //NSLog(@"%i",_cavWidth);
     _homePosition.x = _x - (self.superview.frame.size.width);
     _homePosition.y = _y/3;// + _cavWidth/2;
     

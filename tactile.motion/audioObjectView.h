@@ -29,6 +29,7 @@
 @property int  cavHeight;
 @property bool needsMessage;
 @property CGPoint homePosition;
+@property int myIndex;
 
 @property CGPoint dragVelocity;
 
