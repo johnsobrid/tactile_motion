@@ -22,7 +22,6 @@
 -(CGFloat)euroOffset { return ([self speakerDivision]/2);}
 -(CGFloat)speakerDivision { return M_PI/(_kNumofSpeakers/2);}
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -82,7 +81,6 @@
    [self drawSpeakerRect:CGPointMake(0.0, 0.0)];
    //return scheme
     CGContextRestoreGState(context);
-   
 }
  // Timothy's speaker drawing 
 -(void)drawSpeakerRect:(CGPoint)rectPos
@@ -108,30 +106,5 @@
    [trianglePath fill];
   
 }
-/*              Old way of drawing speakers
- 
--(void)drawSpeakerRect:(CGPoint)rectPos
-{
-    UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x-SPEAKER_SIZE, rectPos.y-SPEAKER_SIZE, SPEAKER_SIZE, SPEAKER_SIZE)];
-    [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
-    [speakerRect fill];
-    [self drawSpeakerTri:rectPos];
-}
 
--(void)drawSpeakerTri:(CGPoint)rectPos
-{
-    CGPoint pointA = CGPointMake(rectPos.x-(SPEAKER_SIZE/2), rectPos.y);
-    CGPoint pointB = CGPointMake(rectPos.x - (SPEAKER_SIZE), rectPos.y + (SPEAKER_SIZE/2));
-    CGPoint pointC = CGPointMake(rectPos.x, rectPos.y + (SPEAKER_SIZE/2));
-    
-    UIBezierPath *trianglePath = [[UIBezierPath alloc]init];
-    [trianglePath moveToPoint:pointA];
-    [trianglePath addLineToPoint:pointB];
-    [trianglePath addLineToPoint:pointC];
-    [trianglePath closePath];
-    [[UIColor colorWithRed:36/255.0 green:103/255.0 blue:124/255.0 alpha:1.0]setFill];
-    [trianglePath fill];
-    
-}
- */
 @end

@@ -33,6 +33,8 @@
 
 @property CGPoint dragVelocity;
 
+@property int numOfObjects;
+
 @property (nonatomic) float theta, d, x, y;
 
 @property BOOL motion;
@@ -42,8 +44,10 @@
 -(void) beginSpinWithAngularVelocity:(float)f;
 -(void) beginVertDrag:(float)f;
 -(void)beginHoroDrag:(float)f;
+
 -(void)goHome;
 - (void)setHome;
+
 
 
 

@@ -73,6 +73,7 @@ enum {
       _dragVelocity = [pan velocityInView:self];
    //   _currentD = [self getObjectD:self.center];
       [self updateFrame];
+      
        [self setMyCenter:self.center];
    }
    if (pan.state == UIGestureRecognizerStateBegan)
@@ -83,8 +84,6 @@ enum {
    {
        _endPoint = self.center;
       [self setEndPoint:self.center];
-      //NSLog([NSString stringWithFormat:@"veloc %f %f", _dragVelocity.x, _dragVelocity.y]);
-      //here we need to also find a way to make this reset
    }
 }
 -(void)doubleTapOccured:(UITapGestureRecognizer *)doubleTap
@@ -92,17 +91,14 @@ enum {
 //send a message to return the animator back to zero
    doubleTap.numberOfTapsRequired =2;
    _animator = 0;
-   
 }
 
 -(void)updateFrame
 {
-    
    _x = self.center.x - _cavWidth;
    _y = _cavHeight - self.center.y;
    _d = sqrtf(_x * _x + _y * _y);
    _theta = atan2f(_y,_x);
-
 }
 
 -(void) beginSpinWithAngularVelocity:(float)f
@@ -128,26 +124,27 @@ enum {
       case kNone:
          //do nothing
          break;
-      
+         
       case kSpin:
          [self spinWithDT:dt];
          break;
-      
+         
       case kVertDrift:
          //call the drift
          [self vertDragWithDT:dt];
          break;
-         case kHoroDrift:
+         
+      case kHoroDrift:
          [self horoDragWithDT:dt];
          break;
-      
+         
       default:
          break;
    }
 }
 -(void)spinWithDT:(float)dt
 {
-         //increase the theta by how ever much is needed
+   //increase the theta by how ever much is needed
      float newTheta= _theta + _angularVelocity *dt;
    //keep it within the appropriate range
     
@@ -157,7 +154,6 @@ enum {
    //   NSLog([NSString stringWithFormat:@"angle %f", _currentAngle]);
    [self setTheta:newTheta];
     _needsMessage = YES;
-   // [self setMyCenter:self.center];
 }
 
 -(void)vertDragWithDT:(float)dt
@@ -246,25 +242,25 @@ enum {
 
 - (void)goHome{
     //These values are almost right,
-    float boxWidth = 76;
-    float gapWidth = (self.superview.bounds.size.width - (boxWidth * 8)) / (8 + 1);
-    float ypos = self.superview.bounds.size.height - (boxWidth*1.5);
-    float xoff = self.superview.bounds.size.width/2;
-
-    float xIncr = boxWidth + gapWidth;
-    float xpos = (_myIndex * xIncr) - xoff + (3*boxWidth/4);
-    [self setX:xpos];
-    [self setY:-ypos/2];
-    
-    //NSLog(@"%f,  %f",_homePosition.x,_homePosition.y);
+   CGRect bounds = [[self superview] bounds];
+   
+   float boxWidth = 76;
+   float gapWidth = (bounds.size.width - (boxWidth * _numOfObjects)) / (_numOfObjects + 1);
+   float yPos = bounds.size.height - (boxWidth *1.5);
+   float xoff = self.superview.bounds.size.width/2;
+   
+   float xIncr = boxWidth + gapWidth;
+   float xPos = (_myIndex * xIncr) - xoff + (3*boxWidth/4);
+    [self setX:xPos];
+    [self setY:-yPos/2];
 }
 
 - (void)setHome{
    // CGPoint home = [self convertPoint:self.frame.origin toView:self.superview];
     //NSLog(@"%i",_cavWidth);
     _homePosition.x = _x - (self.superview.frame.size.width);
-    _homePosition.y = _y/3;// + _cavWidth/2;
-    
+   _homePosition.y = _y - (self.superview.frame.size.width);
+   
 }
 
 

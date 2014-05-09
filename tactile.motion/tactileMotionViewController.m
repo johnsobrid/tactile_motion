@@ -27,7 +27,6 @@ static const float velocityScale = 30;
     
     for (audioObjectView *obj in _audioObjects){
         obj.animator = 0;
-        [obj goHome];
     };
 }
 
@@ -105,8 +104,6 @@ static const float velocityScale = 30;
     }
    controlArea.kNumofSpeakers = _numOfSpeakers;
     _stop.layer.cornerRadius = 24;
-    //_stop.layer.borderWidth = 2;
-    //_stop.layer.borderColor = [UIColor whiteColor].CGColor;
     _play.layer.cornerRadius = 24;
     _textfield.textAlignment = 1;
    
@@ -135,6 +132,7 @@ static const float velocityScale = 30;
    
    float xIncr = boxWidth + gapWidth;
    
+   //create phantom buttons
     for (int i=0;i< _numOfObjects;i++,x+=xIncr) {
         CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
         phantomView *objectView = [[phantomView alloc] initWithFrame:rect
@@ -147,11 +145,12 @@ static const float velocityScale = 30;
         [objectView setNeedsDisplay];
         objectView.myIndex = i;
     }
-    x = gapWidth;
-     y = bounds.size.height - (boxWidth*1.25);
+      x = gapWidth;
+      y = bounds.size.height - (boxWidth*1.25);
     
      xIncr = boxWidth + gapWidth;
-    
+   
+   //create the real audio objects
    for (int i=0;i< _numOfObjects;i++,x+=xIncr) {
       CGRect rect = CGRectMake(x,y,boxWidth,boxWidth);
       audioObjectView *objectView = [[audioObjectView alloc] initWithFrame:rect
@@ -163,6 +162,7 @@ static const float velocityScale = 30;
       [objectView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:objectView action:@selector(doubleTapOccured:)]];
       [objectView setCavWidth:controlArea.center.x];
       [objectView setCavHeight:controlArea.center.y];
+      [objectView setNumOfObjects:_numOfObjects];
       [_audioObjects addObject:objectView];
       [[self view] addSubview:objectView];
       [objectView setNeedsDisplay];
@@ -204,7 +204,6 @@ static const float velocityScale = 30;
            [self oscSend:[NSString stringWithFormat:@"object%@", obj.label] withD:d withTheta:theta];
         }
     }
-    
 }
 
 
@@ -231,8 +230,6 @@ static const float velocityScale = 30;
       {
          theta = theta + (M_PI *2);
       }
-      //this prints the data to the screen, we probably don't need it any more
-      //  [self setStatus:[NSString stringWithFormat:@"object %@ xPos %.2f yPos %.2f d %.2f theta%.2f",label,loc.x,loc.y,d,theta]];
       
       [self oscSend:[NSString stringWithFormat:@"object%@", label] withD:d withTheta:theta];
    }

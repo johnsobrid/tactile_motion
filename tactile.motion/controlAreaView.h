@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define MAX_DISTANCE 5
 #define SPEAKER_SIZE 40
-#define NUM_OF_SPEAKERS 8
 
 @interface controlAreaView : UIView
 @property int maxDistance;
