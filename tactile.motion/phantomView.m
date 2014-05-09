@@ -23,6 +23,20 @@
    [self setBackgroundColor:[UIColor clearColor]];
    //Set variable colour to the intended colour
    _colour = col;
+   
+   UILabel *textField = [[UILabel alloc] initWithFrame:[self bounds]];
+   
+   textField.text = str;
+   textField.font = [UIFont fontWithName:@"Helvetica" size:28];
+   textField.textColor = [UIColor whiteColor];
+   textField.backgroundColor = [UIColor clearColor];
+   textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+   textField.textAlignment = NSTextAlignmentCenter;
+   //   textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+   
+   //[self setTextField:textField];
+   [self addSubview:textField];
+
    return self;
 }
 
@@ -38,7 +52,6 @@
    NSLog(@"Single Tap flag has been set");
    
 }
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

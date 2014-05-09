@@ -730,7 +730,7 @@
 				4FB0B12918A0754E008486F1 /* main.m in Sources */,
 				4F1187D918B15A1C00878073 /* ControlAreaViewController.m in Sources */,
 				4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */,
-				4FC3ED7E191C6FDF007B89F3 /* phantomView.m in Sources */,
+				54D295F2191C313F00ABD880 /* phantomView.m in Sources */,
 				4FB0B12D18A0754E008486F1 /* tactileMotionAppDelegate.m in Sources */,
 				4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */,
 				4FB0B13318A0754E008486F1 /* tactileMotionViewController.m in Sources */,
