@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="vrf-gb-9NI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="vrf-gb-9NI">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -215,7 +215,7 @@
                                 <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDQ-qf-zZd">
-                                <rect key="frame" x="156" y="79" width="379" height="30"/>
+                                <rect key="frame" x="156" y="95" width="379" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -266,6 +266,23 @@
                                     <action selector="stopAllMotion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qGj-zb-VCB"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-wN-Xhw">
+                                <rect key="frame" x="154" y="42" width="383" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="0.58882732780612246" green="0.17870499059474168" blue="0.19330971046654724" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.66055484689999999" green="0.66055484689999999" blue="0.66055484689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.66055484689999999" green="0.66055484689999999" blue="0.66055484689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="globalSpeedChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="DI2-mx-hcg"/>
+                                </connections>
+                            </slider>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Global Speed Control" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yp-g7-fhO">
+                                <rect key="frame" x="271" y="15" width="148" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.66055484689999999" green="0.66055484689999999" blue="0.66055484689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.2580976277" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -278,6 +295,7 @@
                     <navigationItem key="navigationItem" title="tactile.motion" id="QFo-rJ-03G"/>
                     <connections>
                         <outlet property="controlArea" destination="WOW-CA-5lB" id="6Fc-bf-Lnt"/>
+                        <outlet property="globalSpeed" destination="eHn-wN-Xhw" id="W7P-cH-Ydh"/>
                         <outlet property="play" destination="Jbq-Vx-Bhf" id="gfU-68-Qfk"/>
                         <outlet property="statusField" destination="fDQ-qf-zZd" id="fej-9M-GIc"/>
                         <outlet property="stop" destination="h8T-Il-46l" id="FM5-aS-QRk"/>
@@ -291,7 +309,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1113" y="-293"/>
+            <point key="canvasLocation" x="1098" y="-307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UxJ-uU-OQJ">

@@ -18,6 +18,8 @@ static const float velocityScale = 30;
 @property (strong, nonatomic) IBOutlet UIButton *play;
 @property (strong, nonatomic) IBOutlet UIButton *stop;
 @property (strong, nonatomic) IBOutlet UITextField *textfield;
+@property (strong, nonatomic) IBOutlet UISlider *globalSpeed;
+
 
 @end
 
@@ -29,6 +31,14 @@ static const float velocityScale = 30;
         obj.animator = 0;
     };
 }
+
+- (IBAction)globalSpeedChange:(id)sender;
+{
+   for (audioObjectView *obj in _audioObjects){
+      obj.globalSpeed = [self.globalSpeed value];
+   }
+}
+
 
 - (IBAction)playPressed:(id)sender {
    [self oscSendState:@"/play" withState:1];
@@ -427,7 +437,6 @@ static const float velocityScale = 30;
       CGPoint onePoint = CGPointFromString(onePointString);
       CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(_center, onePoint));
       if ( distanceFromRadius < minRadius || distanceFromRadius > maxRadius ) {
-           NSLog(@"radiusError");
          return NO;
       }
        
@@ -436,7 +445,6 @@ static const float velocityScale = 30;
       CGFloat pointAngle = angleBetweenLines(_firstTouch, _center, onePoint, _center);
       
       if ( (pointAngle > currentAngle && hasSwitched) && (index < [points count] - _overlapTolerance) ) {
-           NSLog(@"angleError");
          return NO;
       }
       
@@ -474,8 +482,6 @@ static const float velocityScale = 30;
    if (_circleVelocity > speedAllowance) {
       _circleVelocity = speedAllowance;
    }
-    NSLog(@"%f",_circleVelocity);
-   
    return YES;
 }
 
@@ -546,9 +552,7 @@ static const float velocityScale = 30;
     phantomView * ph = (phantomView *) singletap.view;
     //Get the index of the phantomview
     int index = ph.myIndex;
-    
-    NSLog(@"%d",index);
-    //Use this view to find the corresponding audioobject
+   //Use this view to find the corresponding audioobject
     audioObjectView * av = [_audioObjects objectAtIndex:index];
     //set the audioobjects animator to zero
     av.animator = 0;
@@ -558,7 +562,6 @@ static const float velocityScale = 30;
     phantomView * ph = (phantomView *) longtap.view;
     longtap.cancelsTouchesInView = true;
     int index = ph.myIndex;
-    NSLog(@"%d",index);
     audioObjectView * av = [_audioObjects objectAtIndex:index];
     av.animator = 0;
     [av goHome];

@@ -25,6 +25,7 @@
 
 @property int animator;
 @property float angularVelocity;
+@property float globalSpeed;
 @property int cavWidth;
 @property int  cavHeight;
 @property bool needsMessage;

@@ -39,6 +39,8 @@
    int timeMin;
     CFAbsoluteTime startTime;
 }
+- (IBAction)globalSpeedChange:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

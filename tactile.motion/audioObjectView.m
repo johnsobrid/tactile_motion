@@ -27,6 +27,7 @@ enum {
    if (self) {
       [self updateFrame];
       _animator = kNone;
+      _globalSpeed = 1;
        //Removed this line to stop the colour being automatically set
        //If you look at the drawRect function that's where this should be done anyway.
        //[self setBackgroundColor:col];
@@ -122,6 +123,7 @@ enum {
 }
 -(void)animateWithDT:(float)dt
 {
+   dt = dt* _globalSpeed;
    switch (_animator) {
       case kNone:
          //do nothing
