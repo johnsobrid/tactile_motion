@@ -25,10 +25,11 @@
 		4FB0B14618A0754E008486F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FB0B14418A0754E008486F1 /* InfoPlist.strings */; };
 		4FB0B14818A0754E008486F1 /* tactile_motionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B14718A0754E008486F1 /* tactile_motionTests.m */; };
 		4FB0B15318A07671008486F1 /* controlAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0B15218A07671008486F1 /* controlAreaView.m */; };
-		4FC3ED7E191C6FDF007B89F3 /* phantomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC3ED7D191C6FDF007B89F3 /* phantomView.m */; };
 		4FC9F54F18B45188003573BB /* SettingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9F54E18B45188003573BB /* SettingsPageViewController.m */; };
-		54C16F34191A47CB00EB3CF9 /* libVVBasics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C16F1C191A479900EB3CF9 /* libVVBasics.a */; };
-		54C16F35191A47CB00EB3CF9 /* libVVOSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C16F1E191A479900EB3CF9 /* libVVOSC.a */; };
+		4FD472C41999B83B00C05A93 /* libVVBasics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3EDA6191C704C007B89F3 /* libVVBasics.a */; };
+		4FD472C51999B83B00C05A93 /* libVVOSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3EDA8191C704C007B89F3 /* libVVOSC.a */; };
+		4FD472C81999B92900C05A93 /* libVVBasics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3EDA6191C704C007B89F3 /* libVVBasics.a */; };
+		4FD472C91999B92F00C05A93 /* libVVOSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC3EDA8191C704C007B89F3 /* libVVOSC.a */; };
 		54D295F2191C313F00ABD880 /* phantomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D295F1191C313F00ABD880 /* phantomView.m */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,90 @@
 			proxyType = 2;
 			remoteGlobalIDString = 96C18C3E185A1A7D0082DE35;
 			remoteInfo = VVOSCStatic;
+		};
+		4FD472951999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 968A7EEB185BA3100075DEB1;
+			remoteInfo = "Build iOS static libs";
+		};
+		4FD472B01999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96C8073A19817C1600FA7825;
+			remoteInfo = VVBufferPool;
+		};
+		4FD472B21999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96C8071219817BFE00FA7825;
+			remoteInfo = DDMathParser;
+		};
+		4FD472B41999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96C8072619817C0A00FA7825;
+			remoteInfo = JSONKit;
+		};
+		4FD472B61999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 964FF27D1981B5AF00CCC808;
+			remoteInfo = VVISFKit;
+		};
+		4FD472B81999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1A6F726619033A9D00A6FBAD;
+			remoteInfo = VVUIToolboxStatic;
+		};
+		4FD472BA1999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C1CAC1983BE7D00111741;
+			remoteInfo = "GLScene Test App";
+		};
+		4FD472BC1999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C1CC71983BE9A00111741;
+			remoteInfo = "QCGLScene Test App";
+		};
+		4FD472BE1999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C1CE21983BEA200111741;
+			remoteInfo = "CIGLScene Test App";
+		};
+		4FD472C01999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 965C1CFD198403C300111741;
+			remoteInfo = "ISFGLScene Test App";
+		};
+		4FD472C21999B83200C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96140109198AD46D00335292;
+			remoteInfo = "QT and Hap Test App";
+		};
+		4FD472C61999B8C400C05A93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC3ED7F191C704C007B89F3 /* VVOpenSource.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 968A7EEB185BA3100075DEB1;
+			remoteInfo = "Build iOS static libs";
 		};
 		54C16F07191A479900EB3CF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -267,8 +352,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54C16F34191A47CB00EB3CF9 /* libVVBasics.a in Frameworks */,
-				54C16F35191A47CB00EB3CF9 /* libVVOSC.a in Frameworks */,
+				4FD472C91999B92F00C05A93 /* libVVOSC.a in Frameworks */,
+				4FD472C81999B92900C05A93 /* libVVBasics.a in Frameworks */,
 				4FB0B11F18A0754E008486F1 /* CoreGraphics.framework in Frameworks */,
 				4FB0B12118A0754E008486F1 /* UIKit.framework in Frameworks */,
 				4FB0B11D18A0754E008486F1 /* Foundation.framework in Frameworks */,
@@ -279,6 +364,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD472C41999B83B00C05A93 /* libVVBasics.a in Frameworks */,
+				4FD472C51999B83B00C05A93 /* libVVOSC.a in Frameworks */,
 				4FB0B13C18A0754E008486F1 /* XCTest.framework in Frameworks */,
 				4FB0B13E18A0754E008486F1 /* UIKit.framework in Frameworks */,
 				4FB0B13D18A0754E008486F1 /* Foundation.framework in Frameworks */,
@@ -405,6 +492,10 @@
 			isa = PBXGroup;
 			children = (
 				4FC3ED92191C704C007B89F3 /* VVBasics.framework */,
+				4FD472B11999B83200C05A93 /* VVBufferPool.framework */,
+				4FD472B31999B83200C05A93 /* DDMathParser.framework */,
+				4FD472B51999B83200C05A93 /* JSONKit.framework */,
+				4FD472B71999B83200C05A93 /* VVISFKit.framework */,
 				4FC3ED94191C704C007B89F3 /* VVUIToolbox.framework */,
 				4FC3ED96191C704C007B89F3 /* VVMIDI.framework */,
 				4FC3ED98191C704C007B89F3 /* VVOSC.framework */,
@@ -416,6 +507,12 @@
 				4FC3EDA4191C704C007B89F3 /* OSCPingTester.app */,
 				4FC3EDA6191C704C007B89F3 /* libVVBasics.a */,
 				4FC3EDA8191C704C007B89F3 /* libVVOSC.a */,
+				4FD472B91999B83200C05A93 /* libVVUIToolbox.a */,
+				4FD472BB1999B83200C05A93 /* GLScene Test App.app */,
+				4FD472BD1999B83200C05A93 /* QCGLScene Test App.app */,
+				4FD472BF1999B83200C05A93 /* CIGLScene Test App.app */,
+				4FD472C11999B83200C05A93 /* ISFGLScene Test App.app */,
+				4FD472C31999B83200C05A93 /* QT and Hap Test App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -454,6 +551,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4FD472C71999B8C400C05A93 /* PBXTargetDependency */,
 				54C16F23191A47C200EB3CF9 /* PBXTargetDependency */,
 			);
 			name = tactile.motion;
@@ -472,6 +570,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4FD472961999B83200C05A93 /* PBXTargetDependency */,
 				4FB0B14018A0754E008486F1 /* PBXTargetDependency */,
 			);
 			name = tactile.motionTests;
@@ -606,6 +705,76 @@
 			fileType = archive.ar;
 			path = libVVOSC.a;
 			remoteRef = 4FC3EDA7191C704C007B89F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472B11999B83200C05A93 /* VVBufferPool.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVBufferPool.framework;
+			remoteRef = 4FD472B01999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472B31999B83200C05A93 /* DDMathParser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DDMathParser.framework;
+			remoteRef = 4FD472B21999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472B51999B83200C05A93 /* JSONKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONKit.framework;
+			remoteRef = 4FD472B41999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472B71999B83200C05A93 /* VVISFKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VVISFKit.framework;
+			remoteRef = 4FD472B61999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472B91999B83200C05A93 /* libVVUIToolbox.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libVVUIToolbox.a;
+			remoteRef = 4FD472B81999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472BB1999B83200C05A93 /* GLScene Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "GLScene Test App.app";
+			remoteRef = 4FD472BA1999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472BD1999B83200C05A93 /* QCGLScene Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "QCGLScene Test App.app";
+			remoteRef = 4FD472BC1999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472BF1999B83200C05A93 /* CIGLScene Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CIGLScene Test App.app";
+			remoteRef = 4FD472BE1999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472C11999B83200C05A93 /* ISFGLScene Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "ISFGLScene Test App.app";
+			remoteRef = 4FD472C01999B83200C05A93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FD472C31999B83200C05A93 /* QT and Hap Test App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "QT and Hap Test App.app";
+			remoteRef = 4FD472C21999B83200C05A93 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		54C16F08191A479900EB3CF9 /* VVBasics.framework */ = {
@@ -755,6 +924,16 @@
 			target = 4FB0B11818A0754E008486F1 /* tactile.motion */;
 			targetProxy = 4FB0B13F18A0754E008486F1 /* PBXContainerItemProxy */;
 		};
+		4FD472961999B83200C05A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Build iOS static libs";
+			targetProxy = 4FD472951999B83200C05A93 /* PBXContainerItemProxy */;
+		};
+		4FD472C71999B8C400C05A93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Build iOS static libs";
+			targetProxy = 4FD472C61999B8C400C05A93 /* PBXContainerItemProxy */;
+		};
 		54C16F23191A47C200EB3CF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Build iOS static libs";
@@ -793,7 +972,7 @@
 		4FB0B14918A0754E008486F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -823,6 +1002,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = /Users/bridgetjohnson/Desktop/PHD/Code;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -832,7 +1012,7 @@
 		4FB0B14A18A0754E008486F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -856,6 +1036,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = /Users/bridgetjohnson/Desktop/PHD/Code;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -870,7 +1051,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tactile.motion/tactile.motion-Prefix.pch";
 				INFOPLIST_FILE = "tactile.motion/tactile.motion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -888,7 +1069,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "tactile.motion/tactile.motion-Prefix.pch";
 				INFOPLIST_FILE = "tactile.motion/tactile.motion-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
