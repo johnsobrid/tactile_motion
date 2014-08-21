@@ -34,7 +34,17 @@ enum {
        
        //Replaced with these lines instead:
             //Set Background to transparent
-      [self setBackgroundColor:[UIColor clearColor]];
+       [self setBackgroundColor:[UIColor clearColor]];
+       [self.layer setShadowColor:[UIColor blackColor].CGColor];
+       [self.layer setShadowOffset:CGSizeZero];
+       [self.layer setShadowOpacity:0.8];
+       [self.layer setShadowRadius:7.0];
+       //[self setBackgroundColor:col];
+       
+       
+       
+       [self.layer setCornerRadius:frame.size.width/2.0];
+       //[self.layer setMasksToBounds:true];
        //Set variable colour to the intended colour
        _colour = col;
        
@@ -47,11 +57,24 @@ enum {
       textField.backgroundColor = [UIColor clearColor];
       textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
       textField.textAlignment = NSTextAlignmentCenter;
+       [textField.layer setShadowColor:[UIColor blackColor].CGColor];
+       [textField.layer setShadowOffset:CGSizeZero];
+       [textField.layer setShadowOpacity:0.8];
+       [textField.layer setShadowRadius:2.0];
+       
+       
+       UIView * circle = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+       [circle setBackgroundColor:col];
+       [circle.layer setCornerRadius:frame.size.width/2.0];
+       [circle.layer setMasksToBounds:true];
+       [circle.layer setOpacity:1.0];
+       [self addSubview:circle];
+       
       //   textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
       
       //[self setTextField:textField];
       [self addSubview:textField];
-       NSLog(@"%f,     %f",_x,_y);
+      // NSLog(@"%f,     %f",_x,_y);
        [self setX:_x];
        [self setY:_y];
        [self setHome];
@@ -221,6 +244,8 @@ enum {
 //drawRect is inherited from UIView and will draw everytime
 //setNeedsDisplay is called.
 
+//This probably shouldn't be here at all. There are probably much better ways to do this.
+/*
 - (void)drawRect:(CGRect)theView{
     
     //Get width and height of the view
@@ -243,9 +268,10 @@ enum {
     //OR draw a rectangle
    // CGContextFillRect(myContext, CGRectMake(0, 0, width, height));
 }
+ */
 
 - (void)goHome{
-    //These values are almost right,
+    //These values are right,
    CGRect bounds = [[self superview] bounds];
    
    float boxWidth = 76;
@@ -255,8 +281,24 @@ enum {
    
    float xIncr = boxWidth + gapWidth;
    float xPos = (_myIndex * xIncr) - xoff + (3*boxWidth/4);
-    [self setX:xPos];
-    [self setY:-yPos/2];
+   
+    
+    [UIView animateWithDuration:0.25f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{[self setAlpha:0.f];}
+                     completion:^(BOOL finished){
+                         if (finished){
+                             [self setX:xPos];
+                             [self setY:-yPos/2];
+                             [UIView animateWithDuration:0.7f
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionCurveEaseInOut
+                                              animations:^{[self setAlpha:1.f];}
+                                              completion:nil];}
+                         
+                     }];
+    
 }
 
 - (void)setHome{

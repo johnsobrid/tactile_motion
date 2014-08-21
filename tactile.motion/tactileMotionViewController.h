@@ -18,6 +18,9 @@
 @interface tactileMotionViewController : UIViewController {
     IBOutlet UITextField *statusField;
     IBOutlet controlAreaView *controlArea;
+    playAreaView *playArea;
+    
+    
    
    IBOutlet UILabel *testingField;
    OSCManager *manager;

@@ -19,6 +19,8 @@ static const float velocityScale = 30;
 @property (strong, nonatomic) IBOutlet UIButton *stop;
 @property (strong, nonatomic) IBOutlet UITextField *textfield;
 @property (strong, nonatomic) IBOutlet UISlider *globalSpeed;
+@property (strong, nonatomic) IBOutlet UIButton *stopMotion;
+@property (strong, nonatomic) IBOutlet UIButton *settingsButton;
 
 
 @end
@@ -108,10 +110,48 @@ static const float velocityScale = 30;
    animationTimer = [NSTimer scheduledTimerWithTimeInterval:kAnimationInterval target:self selector:@selector(animateAudioObjects:) userInfo:nil repeats:YES];
     OSCTimer = [NSTimer scheduledTimerWithTimeInterval:kOSCInterval target:self selector:@selector(checkPositionHasChanged) userInfo:nil repeats:YES];
    controlArea.maxDistance = _maxDistance;
+    playArea = [[playAreaView alloc]initWithFrame:controlArea.frame];
+    playArea.maxDistance = _maxDistance;
+    [playArea setBackgroundColor:[UIColor clearColor]];
+    [playArea setCenter:controlArea.center];
+    [self.view addSubview:playArea];
+    [self.view sendSubviewToBack:playArea];
+    
+    [playArea setNeedsDisplay];
     //This is bad coding, but it works regardless...
     if (!_numOfSpeakers){
         _numOfSpeakers = 8;
     }
+    
+    [controlArea setBackgroundColor:[UIColor clearColor]];
+    [controlArea.layer setShadowColor:[UIColor blackColor].CGColor];
+    [controlArea.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    [controlArea.layer setShadowOpacity:0.8];
+    [controlArea.layer setShadowRadius:2.0];
+    
+    
+    [_play.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_play.layer setShadowOffset:CGSizeZero];
+    [_play.layer setShadowOpacity:0.8];
+    [_play.layer setShadowRadius:5.0];
+    [_stop.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_stop.layer setShadowOffset:CGSizeZero];
+    [_stop.layer setShadowOpacity:0.8];
+    [_stop.layer setShadowRadius:5.0];
+    [_stopMotion.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_stopMotion.layer setShadowOffset:CGSizeZero];
+    [_stopMotion.layer setShadowOpacity:0.8];
+    [_stopMotion.layer setShadowRadius:5.0];
+    [_settingsButton.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_settingsButton.layer setShadowOffset:CGSizeZero];
+    [_settingsButton.layer setShadowOpacity:0.8];
+    [_settingsButton.layer setShadowRadius:5.0];
+    [_globalSpeed.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_globalSpeed.layer setShadowOffset:CGSizeZero];
+    [_globalSpeed.layer setShadowOpacity:0.8];
+    [_globalSpeed.layer setShadowRadius:5.0];
+    
+    
    controlArea.kNumofSpeakers = _numOfSpeakers;
     _stop.layer.cornerRadius = 24;
     _play.layer.cornerRadius = 24;
@@ -120,6 +160,9 @@ static const float velocityScale = 30;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    //sV = [[speakerView alloc]initWithFrame: controlArea.frame];
+    //[controlArea addSubview:sV];
+    //[sV setNeedsDisplay];
    manager = [[OSCManager alloc]init]; //if this line of code is here then it works, but it doesn't seem to make much sense to me as to why we would put it here, in demo's they put it in the init function but when I place it there it creates errors
    outPort = [manager createNewOutputToAddress:_AddressInUse atPort:[_portInUse intValue] withLabel:@"Output"];
 }
@@ -559,6 +602,8 @@ static const float velocityScale = 30;
 }
 
 -(void)phantomLongTapOccured:(UILongPressGestureRecognizer *) longtap{
+    
+    if(UIGestureRecognizerStateBegan == longtap.state){
     phantomView * ph = (phantomView *) longtap.view;
     longtap.cancelsTouchesInView = true;
     int index = ph.myIndex;
@@ -567,6 +612,7 @@ static const float velocityScale = 30;
     [av goHome];
     [self.view sendSubviewToBack:ph];
     [self.view bringSubviewToFront:av];
+    }
     
 }
 

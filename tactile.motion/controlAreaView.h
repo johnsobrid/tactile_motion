@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "playAreaView.h"
+
 
 #define SPEAKER_SIZE 40
 
 @interface controlAreaView : UIView
 @property int maxDistance;
 @property int kNumofSpeakers;
+@property playAreaView * playView;
+
 
 @end

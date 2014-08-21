@@ -21,8 +21,11 @@
    }
    self.layer.opacity = 0.3;
    [self setBackgroundColor:[UIColor clearColor]];
+
    //Set variable colour to the intended colour
    _colour = col;
+    
+    
    
    UILabel *textField = [[UILabel alloc] initWithFrame:[self bounds]];
    
@@ -32,9 +35,24 @@
    textField.backgroundColor = [UIColor clearColor];
    textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
    textField.textAlignment = NSTextAlignmentCenter;
+    
+    [textField.layer setShadowColor:[UIColor blackColor].CGColor];
+    [textField.layer setShadowOffset:CGSizeMake(1.0, 1.0)];
+    [textField.layer setShadowOpacity:0.8];
+    [textField.layer setShadowRadius:2.0];
+    
    //   textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
    
    //[self setTextField:textField];
+    UIView * circle = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    [circle setBackgroundColor:col];
+    [circle.layer setCornerRadius:frame.size.width/2.0];
+    [circle.layer setMasksToBounds:true];
+    [circle.layer setOpacity:1.0];
+    //[circle.layer setBorderColor:[UIColor grayColor].CGColor];
+    //[circle.layer setBorderWidth:3.0f];
+    [self addSubview:circle];
+    
    [self addSubview:textField];
 
    return self;
@@ -55,6 +73,7 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
+/*
 - (void)drawRect:(CGRect)rect
 {
    int width  = self.frame.size.width;
@@ -70,6 +89,7 @@
    //OR draw a rectangle
    
 }
+ */
 
 
 @end

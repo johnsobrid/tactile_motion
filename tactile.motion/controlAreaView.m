@@ -15,7 +15,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setBackgroundColor:[UIColor blueColor]];
+        _playView = [[playAreaView alloc]initWithFrame:self.frame];
+        [self addSubview:_playView];
     }
+
+
     return self;
 }
 
@@ -27,13 +32,16 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-   [self drawCircle]; //call method to draw the circles
+   //[self drawCircle]; //call method to draw the circles
+    //[_playView setNeedsDisplay];
+   // [_speakerView setNeedsDisplay];
    [self positionSpeakers];
    
 }
 
 -(void)drawCircle
 {
+    
    float origIncr = self.bounds.size.width / (2*_maxDistance);
    float orig = 0.0;
    float widthHeight = self.bounds.size.width;
@@ -82,7 +90,7 @@
    //return scheme
     CGContextRestoreGState(context);
 }
- // Timothy's speaker drawing 
+
 -(void)drawSpeakerRect:(CGPoint)rectPos
 {
    UIBezierPath *speakerRect = [UIBezierPath bezierPathWithRect:CGRectMake(rectPos.x-SPEAKER_SIZE, rectPos.y-SPEAKER_SIZE, SPEAKER_SIZE, SPEAKER_SIZE/2.0)];
