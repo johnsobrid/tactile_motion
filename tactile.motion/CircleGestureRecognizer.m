@@ -175,7 +175,7 @@
    //    }
    
    // Calculate the radius by looking at the first point and the center
-   radius_ = fabsf(distanceBetweenPoints(center_, firstTouch_));
+   radius_ = fabs(distanceBetweenPoints(center_, firstTouch_));
    
    CGFloat currentAngle = 0.0;
    BOOL    hasSwitched = NO;
@@ -194,7 +194,7 @@
    index = 0;
    for ( NSString *onePointString in points_ ) {
       CGPoint onePoint = CGPointFromString(onePointString);
-      CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(center_, onePoint));
+      CGFloat distanceFromRadius = fabs(distanceBetweenPoints(center_, onePoint));
       if ( distanceFromRadius < minRadius || distanceFromRadius > maxRadius ) {
          [self failWithError:CircleGestureErrorRadiusVarianceTolerance];
          return;

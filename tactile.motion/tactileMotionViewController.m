@@ -411,7 +411,7 @@ static const float velocityScale = 30;
    
    
    // Calculate the radius by looking at the first point and the center
-   _radius = fabsf(distanceBetweenPoints(_center, _firstTouch));
+   _radius = fabs(distanceBetweenPoints(_center, _firstTouch));
    
    CGFloat currentAngle = 0.0;
    BOOL    hasSwitched = NO;
@@ -435,7 +435,7 @@ static const float velocityScale = 30;
     float totaldistance = 0.0;
    for ( NSString *onePointString in points ) {
       CGPoint onePoint = CGPointFromString(onePointString);
-      CGFloat distanceFromRadius = fabsf(distanceBetweenPoints(_center, onePoint));
+      CGFloat distanceFromRadius = fabs(distanceBetweenPoints(_center, onePoint));
       if ( distanceFromRadius < minRadius || distanceFromRadius > maxRadius ) {
          return NO;
       }
